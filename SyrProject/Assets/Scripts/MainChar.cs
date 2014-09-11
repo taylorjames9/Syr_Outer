@@ -5,6 +5,4 @@ public class MainChar : CharacterMono {
 
 		public bool isConsideringTarget;
 
-
-
 }

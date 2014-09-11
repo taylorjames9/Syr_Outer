@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterMono : MonoBehaviour {
 
@@ -15,6 +15,8 @@ public class CharacterMono : MonoBehaviour {
 	public TargetType myCurrentTarget;
 	public Resilience myResilience;
 	public CharacterNum characterNum;
+
+	public List<Item> myItems = new List<Item>();
 
 	//public int num;
 
