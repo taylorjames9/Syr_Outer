@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\ColorNPC.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\MainChar.cs" />
+     <Compile Include="Assets\Scripts\QueueScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity4.6.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

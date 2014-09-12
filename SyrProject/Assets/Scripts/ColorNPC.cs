@@ -7,4 +7,10 @@ public class ColorNPC : CharacterMono {
 
 		bool isMoving; 
 
+
+	void Start(){
+
+
+
+	}
 }
