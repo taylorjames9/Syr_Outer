@@ -17,6 +17,7 @@ public class QueueScript : MonoBehaviour {
 		float leftMostItemPosition = gameObject.transform.position.x - (gameObject.transform.localScale.x/2) +buffer;
 		foreach (GameObject item in myItems) {
 			GameObject clone = Instantiate(item, new Vector3(leftMostItemPosition + (offset * counter), transform.position.y, transform.position.z), transform.rotation) as GameObject;
+			clone.transform.parent = gameObject.transform;
 			counter++;
 		}
 	}
