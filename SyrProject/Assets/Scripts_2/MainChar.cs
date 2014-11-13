@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class MainChar : Character {
 
-
-
 	//These will appear in inspector because they are part of the Character parent class
 //	*public enum MYCOLOR {Null, Blue, Yellow, Orange, Purple, Red, Black, Green, White, Aqua, Beige};
 //	*public Texture2D myTexture;
@@ -15,14 +13,14 @@ public class MainChar : Character {
 
 	private bool isConsideringTarget;
 	private Character targetUnderConsideration;
+	private Character myCurrTarget;
 	private Vector2 myStartPosition;
 	private bool isActingAsMain = true;
-	//private List<Item> myCurrentItems = new List<Item>();
 	private List<Transform> myCurrentItems = new List<Transform>();
 	private Character myAssailant;
 	private bool attacking = false;
 	private List<Character> myTargetList = new List<Character>();
-	private Character myCurrTarget;
+
 	private int tapOnMeCounter;
 
 	private GameObject myItem1;
@@ -39,12 +37,33 @@ public class MainChar : Character {
 
 	}
 
+	void Update(){
+
+		switch(levelManScript.getGameState()){
+		case GAME_STATE.NONE:
+
+			break;
+		case GAME_STATE.RED_ARROW_OUT:
+
+			break;
+		case GAME_STATE.MAINCHAR_ACTIVE:
+			//hide red arrow
+			//hide queue
+			walkToTarget (getTarget ().transform);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+
 	void OnMouseDown(){
 		tapOnMeCounter++;
 		myQueueOBJ.SetActive (true);
 		if (tapOnMeCounter > 1) {
 			myArrow.SetActive (true);
-			levelManScript.myGameState = LevelManager.GAME_STATE.RED_ARROW_OUT; 
+			levelManScript.setGameState(GAME_STATE.RED_ARROW_OUT); 
 			gameObject.tag="ActiveMain";
 		} else if (tapOnMeCounter > 3) {
 			//myArrow.SetActive (false);
@@ -87,9 +106,9 @@ public class MainChar : Character {
 	}
 
 	public void rotateArrow (Character char1){
-		Vector2 lookAtPoint = new Vector2(char1.transform.position.x, char1.transform.position.y);
-		myArrow.transform.LookAt(new Vector3(0,lookAtPoint.y, lookAtPoint.x));
-		//myArrow.transform.LookAt(char1.transform);
+		Vector3 dir = char1.transform.position - transform.position;
+		float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+		myArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 
 	public void hideArrow(){
@@ -109,20 +128,20 @@ public class MainChar : Character {
 			//displayQueueFromQueueList();
 	}
 
-	public void setTarget(Character char1){
-			//myCurrTarget = char1;
+	public void mainSetTarget(Character char1){
+			myCurrTarget = char1;
 	}
 
-	/*public Character getTarget (){
-		//return myCurrTarget;
-	}*/
+	public Character getTarget (){
+		return myCurrTarget;
+	}
 
 	public void executeInstructions(){
 		//this function could be used to contain a series of instructions for going up to a person, effecting, clearingQueue etc
 	}
 
 	public void walkToTarget(Transform targetCharacter){
-		//transform.position = Vector2.MoveTowards(transform.position, target, 0.02f);
+		transform.position = Vector2.MoveTowards(this.transform.position, targetCharacter.position, 0.02f);
 		//play walk animation
 	}
 

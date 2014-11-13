@@ -38,15 +38,17 @@ public class NonMainChar : Character {
 	}
 
 	void OnMouseDown(){
-		if (levelManScript.myGameState == LevelManager.GAME_STATE.NONE) {
+		if (levelManScript.getGameState() == GAME_STATE.NONE) {
 			myQueueOBJ.SetActive (true);
-		} else if (levelManScript.myGameState == LevelManager.GAME_STATE.RED_ARROW_OUT) {
+		} else if (levelManScript.getGameState() == GAME_STATE.RED_ARROW_OUT) {
 			//Call main player arrow rotate method
 			activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 			activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
+
 			activeMainPlayerScript.rotateArrow (this);
+			Debug.Log ("Print this : " + this);
+			activeMainPlayerScript.mainSetTarget (this);
+			Debug.Log("Current target is "+activeMainPlayerScript.getTarget());
 		}
-
-
 	}
 }

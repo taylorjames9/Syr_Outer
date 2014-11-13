@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\CharacterMono.cs" />
      <Compile Include="Assets\Scripts\ColorNPC.cs" />
      <Compile Include="Assets\Scripts\QueueScript.cs" />
+     <Compile Include="Assets\Scripts_2\Activate_MainChar.cs" />
      <Compile Include="Assets\Scripts_2\Character.cs" />
      <Compile Include="Assets\Scripts_2\Item.cs" />
      <Compile Include="Assets\Scripts_2\Item_2.cs" />
