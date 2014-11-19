@@ -35,6 +35,7 @@ public class MainChar : Character {
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
 		Debug.Log ("levelManScript " + levelManScript);
 
+
 	}
 
 	void Update(){
@@ -66,7 +67,7 @@ public class MainChar : Character {
 			levelManScript.setGameState(GAME_STATE.RED_ARROW_OUT); 
 			gameObject.tag="ActiveMain";
 		} else if (tapOnMeCounter > 3) {
-			//myArrow.SetActive (false);
+			myArrow.SetActive (false);
 		}
 	}
 
