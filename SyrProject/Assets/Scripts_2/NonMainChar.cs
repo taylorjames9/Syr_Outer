@@ -4,28 +4,10 @@ using System.Collections.Generic;
 
 
 public class NonMainChar : Character {
-	
-	//These will appear in inspector because they are part of the Character parent class
-	//	*public enum MYCOLOR {Null, Blue, Yellow, Orange, Purple, Red, Black, Green, White, Aqua, Beige};
-	//	*public Texture2D myTexture;
-	//	*public GameObject myQueueOBJ;
-
-	//private Vector2 myStartPosition;
-
-	//private List<Item> myCurrentItems = new List<Item>();
-	//private Character myAssailant;
-	//private bool attacking = false;
-	//private List<Character> myTargetList = new List<Character>();
-	//private Character myCurrTarget;
-	//private int tapOnMeCounter;
-
-	//private GameObject levelManagerOBJ;
-	//private LevelManager levelManScript;
 
 	private GameObject activeMainPlayerOBJ; 
 	private MainChar activeMainPlayerScript;
 
-	// Use this for initialization
 	public override void Start(){
 		base.Start();
 	}
@@ -46,10 +28,12 @@ public class NonMainChar : Character {
 
 			break;
 		case GAME_STATE.CHAIN_REACTION:
-			//if myTarget not null
-				//sicTarget
-
-
+			Debug.Log ("GAME SATE IN CHAIN REACTION");
+			Debug.Log ("myCurrTarget ="+myCurrTarget);
+			if(myCurrTarget != null){
+				Debug.Log ("SICCING TARGET");
+				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
+			}
 			break;
 		case GAME_STATE.LEVEL_END:
 			
@@ -66,7 +50,6 @@ public class NonMainChar : Character {
 			//Call main player arrow rotate method
 			activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 			activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
-
 			activeMainPlayerScript.rotateArrow (this);
 			Debug.Log ("Print this : " + this);
 			activeMainPlayerScript.mainSetTarget (this);
@@ -78,22 +61,5 @@ public class NonMainChar : Character {
 		reactToGetHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
 		other.GetComponent<Character>().dropItem();
 	}
-
-//	public void iGotHit(Item_Set item0){
-////		if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
-////			Debug.Log ("NonMain drops dead");
-////		} else if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
-////			Debug.Log ("NonMain Set Target");
-////		}
-	//}
-
-	public void setMyAssailant(Character assailor){
-		myAssailant = assailor;
-	}
-
-	public void setTarget(Character target){
-
-	}
-	
 
 }
