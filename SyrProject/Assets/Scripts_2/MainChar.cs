@@ -13,21 +13,21 @@ public class MainChar : Character {
 
 	private bool isConsideringTarget;
 	private Character targetUnderConsideration;
-	private Character myCurrTarget;
-	private Vector2 myStartPosition;
+	//private Character myCurrTarget;
+	//private Vector2 myStartPosition;
 	private bool isActingAsMain = true;
-	private List<Transform> myCurrentItems = new List<Transform>();
-	private Character myAssailant;
-	private bool attacking = false;
-	private List<Character> myTargetList = new List<Character>();
-	private bool stabTarget0;
+	//private List<Transform> myCurrentItems = new List<Transform>();
+	//private Character myAssailant;
+	//private bool attacking = false;
+	//private List<Character> myTargetList = new List<Character>();
+	//private bool stabTarget0;
 
-	private int tapOnMeCounter;
+	//private int tapOnMeCounter;
 
-	private GameObject myItem1;
+	//private GameObject myItem1;
 
-	private GameObject levelManagerOBJ;
-	private LevelManager levelManScript;
+	//private GameObject levelManagerOBJ;
+	//private LevelManager levelManScript;
 	private bool arrived; 
 
 	Animator anim; 

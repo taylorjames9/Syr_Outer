@@ -10,21 +10,20 @@ public class NonMainChar : Character {
 	//	*public Texture2D myTexture;
 	//	*public GameObject myQueueOBJ;
 
-	private Vector2 myStartPosition;
+	//private Vector2 myStartPosition;
 
-	private List<Item> myCurrentItems = new List<Item>();
-	private Character myAssailant;
-	private bool attacking = false;
-	private List<Character> myTargetList = new List<Character>();
-	private Character myCurrTarget;
-	private int tapOnMeCounter;
+	//private List<Item> myCurrentItems = new List<Item>();
+	//private Character myAssailant;
+	//private bool attacking = false;
+	//private List<Character> myTargetList = new List<Character>();
+	//private Character myCurrTarget;
+	//private int tapOnMeCounter;
 
-	private GameObject levelManagerOBJ;
-	private LevelManager levelManScript;
+	//private GameObject levelManagerOBJ;
+	//private LevelManager levelManScript;
 
 	private GameObject activeMainPlayerOBJ; 
 	private MainChar activeMainPlayerScript;
-	private bool justGotStabbed;
 
 	// Use this for initialization
 	void Start () {
