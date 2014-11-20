@@ -50,35 +50,15 @@ public class NonMainChar : Character {
 	
 	void OnTriggerEnter2D(Collider2D  other){
 		iGotHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
-		other.GetComponent<Character>().dropObject();
+		other.GetComponent<Character>().dropItem();
 	}
 
 	public void iGotHit(Item_Set item0){
-		//if syringe type is black 
-			//then I die
-
-		//else if syringe type is color
-		    //set new target
-
 		if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("NonMain drops dead");
 		} else if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			Debug.Log ("NonMain Set Target");
 		}
-
-		/*if(item0.paramet.itemFunction == itemType.ITEM_FUNCTION.DEATH){
-			//dropDead
-			Debug.Log ("NonMain drops dead");
-		}
-
-		else if(item0.paramet.itemFunction == itemType.ITEM_FUNCTION.SETTARGET){
-			Debug.Log ("NonMain Set Target");
-		}*/
-
-	}
-
-	public void dropObject(){
-
 	}
 
 	public void setMyAssailant(Character assailor){

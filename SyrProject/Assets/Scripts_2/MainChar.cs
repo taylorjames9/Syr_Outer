@@ -30,7 +30,7 @@ public class MainChar : Character {
 	//private LevelManager levelManScript;
 	private bool arrived; 
 
-	Animator anim; 
+	//Animator anim; 
 
 	void Start(){
 		anim = GetComponent<Animator>();
@@ -53,7 +53,7 @@ public class MainChar : Character {
 		case GAME_STATE.MAINCHAR_ACTIVE:
 			myArrow.SetActive (false);
 			//set myAssailant in target to me. 
-			myCurrTarget.GetComponent<NonMainChar>().setMyAssailant(this);
+			myCurrTarget.GetComponent<Character>().setAssailant(this);
 			walkToTarget (getTarget ().transform);
 			break;
 		default:

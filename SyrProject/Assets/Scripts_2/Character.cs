@@ -18,16 +18,23 @@ public abstract class Character : MonoBehaviour {
 	protected LevelManager levelManScript;
 	protected int tapOnMeCounter;
 	protected bool attacking = false;
+	protected Item_Set itemToUse;
 
-	public Animator anim;
+	protected Animator anim;
+
+	public void Start(){
+		myStartPosition = new Vector2(this.transform.position.x, this.transform.position.y);
+		Debug.Log ("Set everyone's positions.");
+	}
+
 
 
 	public void setAssailant(Character myAssailant){ }
-	public void setTarget(Character char){ }
-	public void hitTarget(Character char, Item Item_Set){ }
+	public void setTarget(Character chr){ }
+	public void hitTarget(Character chr, Item Item_Set){ }
 	public void dropItem(){ }
 	public void reactToGetHit (Item item){ }
-	public void sickTarget(Character sicTarget){}//this can be thought of as aim
+	public void sicTarget(Character sicTarget, Item_Set itemToUSe){}  //this can be walk to or aim
 	public void hitTarget(){ }
 	public void returnToOrigPosition( ){ }
 	public void setLiability (bool lia) { }
