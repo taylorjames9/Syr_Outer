@@ -7,10 +7,12 @@ public abstract class Character : MonoBehaviour {
 	public enum MYCOLOR {Null, Blue, Yellow, Orange, Purple, Red, Black, Green, White, Aqua, Beige};
 	public MYCOLOR myColor;
 	public GameObject myQueueOBJ;
+	protected QueueScript1 myQueue_Script;
 	public enum FACINGDIR {UP, DOWN, LEFT, RIGHT};
 
 	protected Character myCurrTarget;
 	protected Vector2 myStartPosition;
+	//protected 
 	protected List<Transform> myCurrentItems = new List<Transform>();
 	protected Character myAssailant;
 	protected List<Character> myTargetList = new List<Character>();
@@ -30,6 +32,9 @@ public abstract class Character : MonoBehaviour {
 
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
+
+		myQueue_Script = myQueueOBJ.GetComponent<QueueScript1>();
+
 	}
 
 	public void setAssailant(Character assailor){ 
@@ -51,9 +56,10 @@ public abstract class Character : MonoBehaviour {
 		}
 	}
 	public void sicTarget(Transform sicTarget, Item_Set itemToUSe){
-		while(!arrived){
+		if(!arrived){
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 			anim.SetInteger("MainInt", 1);
+			//yield;
 		}
 
 	}  //this can be walk to or aim

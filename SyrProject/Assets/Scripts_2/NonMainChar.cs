@@ -28,8 +28,35 @@ public class NonMainChar : Character {
 	// Use this for initialization
 	public override void Start(){
 		base.Start();
+	}
+
+	void Update(){
+		
+		switch(levelManScript.getGameState()){
+		case GAME_STATE.NONE:
+			
+			break;
+		case GAME_STATE.LEVEL_START:
+			
+			break;
+		case GAME_STATE.RED_ARROW_OUT:
+			
+			break;
+		case GAME_STATE.MAINCHAR_ACTIVE:
+
+			break;
+		case GAME_STATE.CHAIN_REACTION:
+			//if myTarget not null
+				//sicTarget
 
 
+			break;
+		case GAME_STATE.LEVEL_END:
+			
+			break;
+		default:
+			break;
+		}
 	}
 
 	void OnMouseDown(){

@@ -35,7 +35,6 @@ public class MainChar : Character {
 	public override void Start(){
 		base.Start();
 		anim.SetInteger("MainInt", 0); 
-
 		myArrow.SetActive (false);
 
 	}
@@ -46,13 +45,23 @@ public class MainChar : Character {
 		case GAME_STATE.NONE:
 
 			break;
+		case GAME_STATE.LEVEL_START:
+			
+			break;
 		case GAME_STATE.RED_ARROW_OUT:
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
+			Debug.Log("Inside of gamestate main chara active");
 			myArrow.SetActive (false);
 			myCurrTarget.GetComponent<Character>().setAssailant((Character)this);
-			walkToTarget (getTarget ().transform);
+			sicTarget (getTarget ().transform, myQueue_Script.myItemObjects[0]);
+			break;
+		case GAME_STATE.CHAIN_REACTION:
+			
+			break;
+		case GAME_STATE.LEVEL_END:
+			
 			break;
 		default:
 			break;
@@ -91,6 +100,8 @@ public class MainChar : Character {
 			//clearObjectFromQueueAfterUse( )
 			//stayInKillSpot( ) or walkBackToStartPosition()
 		if(other.name == myCurrTarget.name){
+			//levelManScript.myGameState = GAME_STATE.CHAIN_REACTION;
+			levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
 			arrived = true;
 			stabTarget();
 			Debug.Log("I ran into my target, so Now I will stab.");
