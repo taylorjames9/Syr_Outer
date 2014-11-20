@@ -23,16 +23,23 @@ public abstract class Character : MonoBehaviour {
 
 	protected Animator anim;
 
-	public void Start(){
+	public virtual void Start(){
 		myStartPosition = new Vector2(this.transform.position.x, this.transform.position.y);
 		Debug.Log ("Set everyone's positions.");
 		anim = GetComponent<Animator>();
+
+		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
+		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
 	}
-	
+
 	public void setAssailant(Character assailor){ 
 		myAssailant = assailor;
 	}
 
+	public Character getTarget(){
+		return myCurrTarget;
+		
+	}
 	public void setTarget(Character chr){ }
 	public void hitTarget(Character chr, Item Item_Set){ }
 	public void dropItem(){ }

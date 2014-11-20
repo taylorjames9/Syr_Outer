@@ -26,10 +26,9 @@ public class NonMainChar : Character {
 	private MainChar activeMainPlayerScript;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start(){
+		base.Start();
 
-		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
-		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
 
 	}
 

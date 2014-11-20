@@ -28,17 +28,16 @@ public class MainChar : Character {
 
 	//private GameObject levelManagerOBJ;
 	//private LevelManager levelManScript;
-	private bool arrived; 
+	//private bool arrived; 
 
 	//Animator anim; 
 
-	void Start(){
-		//anim = GetComponent<Animator>();
+	public override void Start(){
+		base.Start();
 		anim.SetInteger("MainInt", 0); 
 
 		myArrow.SetActive (false);
-		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
-		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
+
 	}
 
 	void Update(){
@@ -52,7 +51,6 @@ public class MainChar : Character {
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
 			myArrow.SetActive (false);
-			//set myAssailant in target to me. 
 			myCurrTarget.GetComponent<Character>().setAssailant((Character)this);
 			walkToTarget (getTarget ().transform);
 			break;
