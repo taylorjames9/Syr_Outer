@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum GAME_STATE {NONE, RED_ARROW_OUT, MAINCHAR_ACTIVE};
+public enum GAME_STATE {NONE, LEVEL_START, RED_ARROW_OUT, MAINCHAR_ACTIVE, CHAIN_REACTION, LEVEL_END};
 
 public class LevelManager : MonoBehaviour {
 

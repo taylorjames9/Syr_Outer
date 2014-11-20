@@ -11,7 +11,7 @@ public class QueueScript1 : MonoBehaviour {
 	private GameObject myPotentialIncomingObject;
 	private GameObject myPotentialOutgoingObject;
 
-	public List<Item> myItemObjects = new List<Item>();
+	public List<Item_Set> myItemObjects = new List<Item_Set>();
 
 	//Each object inside the collider with a prefab will have a triggerEnter2D methods, which when active, will change these colliderBools
 	//might be easiest to make these into properties
@@ -59,7 +59,7 @@ public class QueueScript1 : MonoBehaviour {
 	public void displayNewQueueVisualFromOwnerQueueList(){
 		Debug.Log ("Ran displayQueue Method");
 		float leftMostPosition = gameObject.transform.position.x - (gameObject.transform.localScale.x / 2)+buffer;
-		foreach (Item item in myItemObjects) {
+		foreach (Item_Set item in myItemObjects) {
 			Debug.Log ("Should be setting position.");
 			item.transform.position = new Vector3 (leftMostPosition + (offset * counter), transform.position.y, transform.position.z);
 			item.transform.parent = gameObject.transform;

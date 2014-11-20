@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Character : MonoBehaviour {
+public abstract class Character : MonoBehaviour {
 
 	public enum MYCOLOR {Null, Blue, Yellow, Orange, Purple, Red, Black, Green, White, Aqua, Beige};
 	public MYCOLOR myColor;
@@ -10,15 +10,8 @@ public class Character : MonoBehaviour {
 	public enum FACINGDIR {UP, DOWN, LEFT, RIGHT};
 
 
+	public void dropObject(){
 
-	// Use this for initialization
-	void Start () {
+	}
 
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

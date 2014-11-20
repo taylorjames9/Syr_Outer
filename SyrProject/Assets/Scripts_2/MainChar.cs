@@ -39,7 +39,6 @@ public class MainChar : Character {
 		myArrow.SetActive (false);
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
-		Debug.Log ("levelManScript " + levelManScript);
 	}
 
 	void Update(){
@@ -53,6 +52,8 @@ public class MainChar : Character {
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
 			myArrow.SetActive (false);
+			//set myAssailant in target to me. 
+			myCurrTarget.GetComponent<NonMainChar>().setMyAssailant(this);
 			walkToTarget (getTarget ().transform);
 			break;
 		default:
@@ -182,4 +183,9 @@ public class MainChar : Character {
 		//play animation
 
 	}
+
+	public void dropObject(){
+
+	}
+
 }
