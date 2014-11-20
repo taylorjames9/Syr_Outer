@@ -20,6 +20,7 @@ public class MainChar : Character {
 	private Character myAssailant;
 	private bool attacking = false;
 	private List<Character> myTargetList = new List<Character>();
+	private bool stabTarget0;
 
 	private int tapOnMeCounter;
 
@@ -27,15 +28,18 @@ public class MainChar : Character {
 
 	private GameObject levelManagerOBJ;
 	private LevelManager levelManScript;
+	private bool arrived; 
 
+	Animator anim; 
 
 	void Start(){
+		anim = GetComponent<Animator>();
+		anim.SetInteger("MainInt", 0); 
+
 		myArrow.SetActive (false);
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
 		Debug.Log ("levelManScript " + levelManScript);
-
-
 	}
 
 	void Update(){
@@ -48,17 +52,14 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
-			//hide red arrow
-			//hide queue
+			myArrow.SetActive (false);
 			walkToTarget (getTarget ().transform);
 			break;
 		default:
 			break;
 		}
-
 	}
-
-
+	
 	void OnMouseDown(){
 		tapOnMeCounter++;
 		myQueueOBJ.SetActive (true);
@@ -70,7 +71,6 @@ public class MainChar : Character {
 			myArrow.SetActive (false);
 		}
 	}
-
 
 	public List<Transform> getItemsFromMyInternalQueue(){
 		return myCurrentItems;
@@ -91,6 +91,16 @@ public class MainChar : Character {
 			//stabTarget()
 			//clearObjectFromQueueAfterUse( )
 			//stayInKillSpot( ) or walkBackToStartPosition()
+		if(other.name == myCurrTarget.name){
+			arrived = true;
+			stabTarget();
+			Debug.Log("I ran into my target, so Now I will stab.");
+		}
+
+	}
+
+	void OnTriggerStay2D(Collider2D  other) {
+		//anim.SetInteger("MainInt", 0);
 	}
 
 
@@ -142,13 +152,16 @@ public class MainChar : Character {
 	}
 
 	public void walkToTarget(Transform targetCharacter){
+		if(!arrived){
 		transform.position = Vector2.MoveTowards(this.transform.position, targetCharacter.position, 0.02f);
-		//play walk animation
+		anim.SetInteger("MainInt", 1);
+		}
 	}
 
 	public void stabTarget(){
 		//play animation
-
+		Debug.Log("Commence Zey Stabbing");
+		anim.SetInteger("MainInt", 2);
 	}
 
 	public void walkBackToStartPosition(Vector2 startPosition){

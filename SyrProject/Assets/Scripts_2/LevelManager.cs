@@ -6,8 +6,6 @@ public enum GAME_STATE {NONE, RED_ARROW_OUT, MAINCHAR_ACTIVE};
 public class LevelManager : MonoBehaviour {
 
 	public GAME_STATE myGameState;
-
-
 	
 	public void setGameState(GAME_STATE myGam ){
 		myGameState = myGam;

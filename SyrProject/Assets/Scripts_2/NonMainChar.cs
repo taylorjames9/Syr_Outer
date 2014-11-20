@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 
 public class NonMainChar : Character {
-
-
+	
 	//These will appear in inspector because they are part of the Character parent class
 	//	*public enum MYCOLOR {Null, Blue, Yellow, Orange, Purple, Red, Black, Green, White, Aqua, Beige};
 	//	*public Texture2D myTexture;
@@ -14,9 +13,6 @@ public class NonMainChar : Character {
 	private Vector2 myStartPosition;
 
 	private List<Item> myCurrentItems = new List<Item>();
-
-	//myCurrentItems.addRange.findObjectsOfType<Item>();
-
 	private Character myAssailant;
 	private bool attacking = false;
 	private List<Character> myTargetList = new List<Character>();
@@ -51,4 +47,11 @@ public class NonMainChar : Character {
 			Debug.Log("Current target is "+activeMainPlayerScript.getTarget());
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D  other){
+
+
+	}
+
+
 }
