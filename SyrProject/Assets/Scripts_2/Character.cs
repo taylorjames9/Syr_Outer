@@ -19,22 +19,37 @@ public abstract class Character : MonoBehaviour {
 	protected int tapOnMeCounter;
 	protected bool attacking = false;
 	protected Item_Set itemToUse;
+	protected bool arrived;
 
 	protected Animator anim;
 
 	public void Start(){
 		myStartPosition = new Vector2(this.transform.position.x, this.transform.position.y);
 		Debug.Log ("Set everyone's positions.");
+		anim = GetComponent<Animator>();
+	}
+	
+	public void setAssailant(Character assailor){ 
+		myAssailant = assailor;
 	}
 
-
-
-	public void setAssailant(Character myAssailant){ }
 	public void setTarget(Character chr){ }
 	public void hitTarget(Character chr, Item Item_Set){ }
 	public void dropItem(){ }
-	public void reactToGetHit (Item item){ }
-	public void sicTarget(Character sicTarget, Item_Set itemToUSe){}  //this can be walk to or aim
+	public void reactToGetHit (Item_Set item){ 
+		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
+			Debug.Log ("Victim drops dead");
+		} else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
+			Debug.Log ("Victim just set his target");
+		}
+	}
+	public void sicTarget(Transform sicTarget, Item_Set itemToUSe){
+		while(!arrived){
+			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
+			anim.SetInteger("MainInt", 1);
+		}
+
+	}  //this can be walk to or aim
 	public void hitTarget(){ }
 	public void returnToOrigPosition( ){ }
 	public void setLiability (bool lia) { }

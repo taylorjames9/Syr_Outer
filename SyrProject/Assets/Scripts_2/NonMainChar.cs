@@ -49,17 +49,17 @@ public class NonMainChar : Character {
 	}
 	
 	void OnTriggerEnter2D(Collider2D  other){
-		iGotHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
+		reactToGetHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
 		other.GetComponent<Character>().dropItem();
 	}
 
-	public void iGotHit(Item_Set item0){
-		if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
-			Debug.Log ("NonMain drops dead");
-		} else if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
-			Debug.Log ("NonMain Set Target");
-		}
-	}
+//	public void iGotHit(Item_Set item0){
+////		if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
+////			Debug.Log ("NonMain drops dead");
+////		} else if(item0.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
+////			Debug.Log ("NonMain Set Target");
+////		}
+	//}
 
 	public void setMyAssailant(Character assailor){
 		myAssailant = assailor;

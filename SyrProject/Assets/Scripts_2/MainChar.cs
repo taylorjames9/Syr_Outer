@@ -33,7 +33,7 @@ public class MainChar : Character {
 	//Animator anim; 
 
 	void Start(){
-		anim = GetComponent<Animator>();
+		//anim = GetComponent<Animator>();
 		anim.SetInteger("MainInt", 0); 
 
 		myArrow.SetActive (false);
@@ -53,7 +53,7 @@ public class MainChar : Character {
 		case GAME_STATE.MAINCHAR_ACTIVE:
 			myArrow.SetActive (false);
 			//set myAssailant in target to me. 
-			myCurrTarget.GetComponent<Character>().setAssailant(this);
+			myCurrTarget.GetComponent<Character>().setAssailant((Character)this);
 			walkToTarget (getTarget ().transform);
 			break;
 		default:
@@ -153,10 +153,10 @@ public class MainChar : Character {
 	}
 
 	public void walkToTarget(Transform targetCharacter){
-		if(!arrived){
-		transform.position = Vector2.MoveTowards(this.transform.position, targetCharacter.position, 0.02f);
-		anim.SetInteger("MainInt", 1);
-		}
+//		if(!arrived){
+//		transform.position = Vector2.MoveTowards(this.transform.position, targetCharacter.position, 0.02f);
+//		anim.SetInteger("MainInt", 1);
+//		}
 	}
 
 	public void stabTarget(){
