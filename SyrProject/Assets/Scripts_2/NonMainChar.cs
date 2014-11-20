@@ -58,8 +58,10 @@ public class NonMainChar : Character {
 	}
 	
 	void OnTriggerEnter2D(Collider2D  other){
-		reactToGetHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
-		other.GetComponent<Character>().dropItem();
+		//if(other.gameObject.name == myCurrTarget.name ||other.gameObject.name == myAssailant.name){
+			reactToGetHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
+			other.GetComponent<Character>().dropItem();
+		//}
 	}
 
 }
