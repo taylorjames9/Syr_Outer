@@ -24,6 +24,7 @@ public class NonMainChar : Character {
 
 	private GameObject activeMainPlayerOBJ; 
 	private MainChar activeMainPlayerScript;
+	private bool justGotStabbed;
 
 	// Use this for initialization
 	void Start () {
@@ -49,8 +50,16 @@ public class NonMainChar : Character {
 	}
 
 	void OnTriggerEnter2D(Collider2D  other){
+		justGotStabbed = true;
 
+	}
 
+	public void iGotStabbed(Syringe syrType){
+		//if syringe type is black 
+			//then I die
+
+		//else if syringe type is color
+		    //set new target
 	}
 
 

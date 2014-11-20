@@ -1,12 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CharacterMono.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts_2/Item.cs">
     <Files>
-      <File FileName="../SyringeGame/Assets/Scripts/CharacterClasses.cs" Line="147" Column="147" />
-      <File FileName="../SyringeGame/Assets/Scripts/GameManager.cs" Line="7" Column="7" />
-      <File FileName="Assets/Scripts/CharacterMono.cs" Line="2" Column="2" />
-      <File FileName="Assets/Scripts/ColorNPC.cs" Line="3" Column="3" />
-      <File FileName="Assets/Scripts/MainChar.cs" Line="38" Column="38" />
+      <File FileName="Assets/Scripts_2/MainChar.cs" Line="80" Column="41" />
+      <File FileName="Assets/Scripts_2/LevelManager.cs" Line="10" Column="1" />
+      <File FileName="Assets/Scripts_2/NonMainChar.cs" Line="62" Column="23" />
+      <File FileName="Assets/Scripts/CharacterMono.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts_2/Item.cs" Line="19" Column="5" />
+      <File FileName="Assets/Scripts_2/Syringe.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

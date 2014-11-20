@@ -17,4 +17,5 @@ public class Item : MonoBehaviour {
 			Debug.Log ("is collider1 active? " + transform.GetComponentInParent<QueueScript1> ().collider_1_isActive);
 		}
 	}*/
+
 }

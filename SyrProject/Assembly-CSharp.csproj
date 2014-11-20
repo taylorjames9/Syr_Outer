@@ -52,7 +52,7 @@
      <Compile Include="Assets\Scripts_2\Activate_MainChar.cs" />
      <Compile Include="Assets\Scripts_2\Character.cs" />
      <Compile Include="Assets\Scripts_2\Item.cs" />
-     <Compile Include="Assets\Scripts_2\Item_2.cs" />
+     <Compile Include="Assets\Scripts_2\Item_Set.cs" />
      <Compile Include="Assets\Scripts_2\LevelManager.cs" />
      <Compile Include="Assets\Scripts_2\MainChar.cs" />
      <Compile Include="Assets\Scripts_2\NonMainChar.cs" />
