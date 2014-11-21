@@ -96,10 +96,11 @@ public abstract class Character : MonoBehaviour {
 	public void reactToGetHit (Item_Set item){ 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
+			arrived = false;
+			setAttacking(true);
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			Debug.Log ("THE FUCNTION OF THE SYRINGE IS SET TARGET");
-			levelManScript.myGameState = GAME_STATE.CHAIN_REACTION;
 			setTarget(item.paramet.itemColor);
 			arrived = false;
 			setAttacking(true);
@@ -114,7 +115,8 @@ public abstract class Character : MonoBehaviour {
 		else if(arrived && attacking){
 				switchAnim(anim, 2);
 				setAttacking(false);
-			}
+				levelManScript.myGameState = GAME_STATE.CHAIN_REACTION;
+		}
 
 	}  //this can be walk to or aim
 	public void hitTarget(){ }
@@ -135,11 +137,12 @@ public abstract class Character : MonoBehaviour {
 				setAttacking(false);
 				arrived = true;
 				Debug.Log ("Assailant's objects = "+myQueue_Script.myItemObjects);
-
-				//return;
 			}
 			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){
-				//Debug.Log ("INSIDE OF ATTACKING PORTION. gamestate chain reaction");
+				Debug.Log ("This orange muffa should be moving");
+				setAttacking(false);
+				arrived = true;
+				Debug.Log ("Assailant's objects = "+myQueue_Script.myItemObjects);
 			}
 		}
 		else if (!attacking){
