@@ -3,40 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MainChar : Character {
-
-	//These will appear in inspector because they are part of the Character parent class
-//	*public enum MYCOLOR {Null, Blue, Yellow, Orange, Purple, Red, Black, Green, White, Aqua, Beige};
-//	*public Texture2D myTexture;
-//	*public GameObject myQueueOBJ;
-
+	
 	public GameObject myArrow;
-
 	private bool isConsideringTarget;
 	private Character targetUnderConsideration;
-	//private Character myCurrTarget;
-	//private Vector2 myStartPosition;
 	private bool isActingAsMain = true;
-	//private List<Transform> myCurrentItems = new List<Transform>();
-	//private Character myAssailant;
-	//private bool attacking = false;
-	//private List<Character> myTargetList = new List<Character>();
-	//private bool stabTarget0;
-
-	//private int tapOnMeCounter;
-
-	//private GameObject myItem1;
-
-	//private GameObject levelManagerOBJ;
-	//private LevelManager levelManScript;
-	//private bool arrived; 
-
-	//Animator anim; 
 
 	public override void Start(){
 		base.Start();
 		anim.SetInteger("MainInt", 0); 
 		myArrow.SetActive (false);
-
 	}
 
 	void Update(){
@@ -54,7 +30,6 @@ public class MainChar : Character {
 		case GAME_STATE.MAINCHAR_ACTIVE:
 			Debug.Log("Inside of gamestate main chara active");
 			myArrow.SetActive (false);
-			myCurrTarget.GetComponent<Character>().setAssailant((Character)this);
 			sicTarget (getTarget ().transform, myQueue_Script.myItemObjects[0]);
 			break;
 		case GAME_STATE.CHAIN_REACTION:
@@ -77,53 +52,8 @@ public class MainChar : Character {
 			gameObject.tag="ActiveMain";
 		} else if (tapOnMeCounter > 3) {
 			myArrow.SetActive (false);
+			tapOnMeCounter = 0;
 		}
-	}
-
-	public List<Transform> getItemsFromMyInternalQueue(){
-		return myCurrentItems;
-
-	}
-
-	void OnTriggerEnter2D(Collider2D  other) {
-		//if other's target is me...
-			//wasStabbed()
-			//setTarget()
-			//walkToTarget()
-			//stabTarget()
-			//clearObjectFromQueueAfterUse( )
-			//stayInKillSpot( ) or walkBackToStartPosition()
-			
-
-		//if myTarget is other && attacking is true
-			//stabTarget()
-			//clearObjectFromQueueAfterUse( )
-			//stayInKillSpot( ) or walkBackToStartPosition()
-		if(other.name == myCurrTarget.name){
-			//levelManScript.myGameState = GAME_STATE.CHAIN_REACTION;
-			levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
-			arrived = true;
-			stabTarget();
-			Debug.Log("I ran into my target, so Now I will stab.");
-		}
-
-	}
-
-	void OnTriggerStay2D(Collider2D  other) {
-		//anim.SetInteger("MainInt", 0);
-	}
-
-
-	public void displayQueue (){
-		//myQueue.sectActive(true)
-	}
-
-	public void hideQueue(){
-		//myQueue.sectActive(false)
-	}
-
-	public void displayArrow(){
-		//myArrow.setActive(true)
 	}
 
 	public void rotateArrow (Character char1){
@@ -140,6 +70,10 @@ public class MainChar : Character {
 		isActingAsMain = !isActingAsMain;
 	}
 
+	public void setMainTarget(Character chr){
+		myCurrTarget = chr;
+	}
+
 	public void rearrangeQueue(Item item){
 		//if item.owner != this.gameObject.tag
 			//add new item to Queue at location where it is touching collider
@@ -148,53 +82,12 @@ public class MainChar : Character {
 			//transfer item to Queue at location where it is touching collider
 			//displayQueueFromQueueList();
 	}
-
-	public void mainSetTarget(Character char1){
-			myCurrTarget = char1;
+	public void setTargetUnderConsideration(Character chr){
+		targetUnderConsideration = chr;
 	}
 
-	public Character getTarget (){
-		return myCurrTarget;
-	}
-
-	public void executeInstructions(){
-		//this function could be used to contain a series of instructions for going up to a person, effecting, clearingQueue etc
-	}
-
-	public void walkToTarget(Transform targetCharacter){
-//		if(!arrived){
-//		transform.position = Vector2.MoveTowards(this.transform.position, targetCharacter.position, 0.02f);
-//		anim.SetInteger("MainInt", 1);
-//		}
-	}
-
-	public void stabTarget(){
-		//play animation
-		Debug.Log("Commence Zey Stabbing");
-		anim.SetInteger("MainInt", 2);
-	}
-
-	public void walkBackToStartPosition(Vector2 startPosition){
-		//turn to face origin position
-		//transform.position = Vector2.MoveTowards(transform.position, target, 0.02f);
-		//play walk animation
-	}
-
-	public void stayInKillSpot( ){
-		//do nothing
-	}
-
-	public void clearObjectFromQueueAfterUse( ){
-		//myCurrentItems.RemoveAt(0);
-	}
-
-	public void wasStabbed( ){
-		//play animation
-
-	}
-
-	public void dropObject(){
-
+	public Character getTargetUnderConsideration(){
+		return targetUnderConsideration;
 	}
 
 }

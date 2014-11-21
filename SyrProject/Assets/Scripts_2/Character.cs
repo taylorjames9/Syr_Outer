@@ -12,8 +12,7 @@ public class charParams
 	public CHARACTER_COLOR myColor;
 	public TARGET_TYPE targetType;
 	public RESILIENCE myResilience;
-
-
+	
 }
 
 public abstract class Character : MonoBehaviour {
@@ -54,11 +53,27 @@ public abstract class Character : MonoBehaviour {
 	public void setAssailant(Character assailor){ 
 		myAssailant = assailor;
 	}
-
+	public Character getAssailant(){ 
+		return myAssailant;
+	}
+	
 	public Character getTarget(){
 		return myCurrTarget;
 		
 	}
+	public void setAttacking (bool tf){
+		if(tf){
+			attacking = true; 
+		}
+		else
+			attacking = false;
+	}
+
+	public bool getAttacking(){
+		return attacking;
+	}
+
+
 	public void setTarget(ItemParams.ITEM_COLOR clr){ 
 		Debug.Log ("Set Traget was called");
 		List<Character> chrsInLev = levelManScript.charsInLevel;
@@ -68,15 +83,19 @@ public abstract class Character : MonoBehaviour {
 			if(chr.charParamet.myColor.ToString () == clr.ToString()){
 				Debug.Log ("chr = "+chr);
 				myCurrTarget = chr;
+				myCurrTarget.GetComponent<Character>().setAssailant((Character)this);
+				Debug.Log (" !!!!!!!!  My name is "+gameObject.name+" and my assailant is: "+getAssailant());
 				Debug.Log ("myCurrTarget 1111= "+myCurrTarget);
-				//break;
 			}
 			//else
 				//myCurrTarget = null;
 		}
 	}
 	public void hitTarget(Character chr, Item Item_Set){ }
-	public void dropItem(){ }
+	public void dropItem(){
+		myQueue_Script.myItemObjects.RemoveAt(0);
+	
+	}
 	public void reactToGetHit (Item_Set item){ 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
@@ -86,18 +105,58 @@ public abstract class Character : MonoBehaviour {
 			levelManScript.myGameState = GAME_STATE.CHAIN_REACTION;
 			setTarget(item.paramet.itemColor);
 			arrived = false;
+			setAttacking(true);
 		}
 	}
 	public void sicTarget(Transform sicTarget, Item_Set item){
 		Debug.Log ("arrived = "+arrived);
-		if(!arrived){
+		if(!arrived ){
+			switchAnim(anim, 1);
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
-			anim.SetInteger("MainInt", 1);
 		}
+		else if(arrived && attacking){
+				switchAnim(anim, 2);
+				setAttacking(false);
+			}
 
 	}  //this can be walk to or aim
 	public void hitTarget(){ }
 	public void returnToOrigPosition( ){ }
 	public void setLiability (bool lia) { }
+	public void switchAnim(Animator anim0, int anim_state){
+		anim0.SetInteger("MainInt", anim_state);
+	}
 	
+	public virtual void OnTriggerEnter2D(Collider2D  other){
+		Debug.Log ("OTHER NAME "+other.name);
+		Debug.Log ("ATTACKING = "+attacking);
+		if (attacking){
+			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
+				Debug.Log ("INSIDE OF ATTACKING PORTION. game state main active");
+				levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
+				switchAnim(anim, 2);	
+				setAttacking(false);
+				arrived = true;
+				//return;
+			}
+			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){
+				Debug.Log ("INSIDE OF ATTACKING PORTION. gamestate chain reaction");
+			}
+		}
+		else if (!attacking){
+			//Debug.Log ("Assailant name "+myAssailant.name);
+			Debug.Log ("SHOULD BE INSIDE NOT ATTACK STATE");
+
+			if (other.name == myAssailant.name){
+				Debug.Log ("We inside about to run reactToGetHit");
+				reactToGetHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
+			}
+		}
+	}
+
+	public void walkBackToStartPosition(Vector2 startPosition){
+		//turn to face origin position
+		//transform.position = Vector2.MoveTowards(transform.position, target, 0.02f);
+		//play walk animation
+	}
 }

@@ -47,21 +47,14 @@ public class NonMainChar : Character {
 		if (levelManScript.getGameState() == GAME_STATE.NONE) {
 			myQueueOBJ.SetActive (true);
 		} else if (levelManScript.getGameState() == GAME_STATE.RED_ARROW_OUT) {
+			Debug.Log ("MAIN RED ARROW OUT STATE and clicked nonMain character");
 			//Call main player arrow rotate method
 			activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 			activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
 			activeMainPlayerScript.rotateArrow (this);
 			Debug.Log ("Print this : " + this);
-			activeMainPlayerScript.mainSetTarget (this);
+			activeMainPlayerScript.setTargetUnderConsideration(this);
 			Debug.Log("Current target is "+activeMainPlayerScript.getTarget());
 		}
 	}
-	
-	void OnTriggerEnter2D(Collider2D  other){
-		//if(other.gameObject.name == myCurrTarget.name ||other.gameObject.name == myAssailant.name){
-			reactToGetHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
-			other.GetComponent<Character>().dropItem();
-		//}
-	}
-
 }

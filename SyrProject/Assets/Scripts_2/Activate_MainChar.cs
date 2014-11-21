@@ -11,20 +11,17 @@ public class Activate_MainChar : MonoBehaviour {
 	private LevelManager levelManScript;
 
 	void Start(){
-
-
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
 	}
 
-
 	void OnMouseDown(){
-
 		activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 		activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
-
-		activeMainPlayerScript.mainSetTarget (activeMainPlayerScript.getTarget());
-
+		Debug.Log("target UNDER consdieration ="+activeMainPlayerScript.getTargetUnderConsideration());
+		activeMainPlayerScript.setMainTarget (activeMainPlayerScript.getTargetUnderConsideration());
+		activeMainPlayerScript.getTargetUnderConsideration().setAssailant(activeMainPlayerScript);
+		activeMainPlayerScript.setAttacking(true);
 		levelManScript.setGameState (GAME_STATE.MAINCHAR_ACTIVE);
 	}
 
