@@ -34,7 +34,9 @@ public class MainChar : Character {
 			sicTarget (getTarget ().transform, myQueue_Script.myItemObjects[0]);
 			break;
 		case GAME_STATE.CHAIN_REACTION:
-			
+			if(myCurrTarget != null){
+				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
+			}
 			break;
 		case GAME_STATE.LEVEL_END:
 			

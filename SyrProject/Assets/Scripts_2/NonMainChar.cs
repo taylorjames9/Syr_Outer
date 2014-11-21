@@ -29,9 +29,7 @@ public class NonMainChar : Character {
 			break;
 		case GAME_STATE.CHAIN_REACTION:
 			Debug.Log ("GAME SATE IN CHAIN REACTION");
-			//Debug.Log ("myCurrTarget ="+myCurrTarget);
 			if(myCurrTarget != null){
-				//Debug.Log ("SICCING TARGET");
 				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
 			}
 			break;
