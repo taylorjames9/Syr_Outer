@@ -28,8 +28,9 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
-			Debug.Log("Inside of gamestate main chara active");
+			//Debug.Log("Inside of gamestate main chara active");
 			myArrow.SetActive (false);
+			myQueueOBJ.SetActive (false);
 			sicTarget (getTarget ().transform, myQueue_Script.myItemObjects[0]);
 			break;
 		case GAME_STATE.CHAIN_REACTION:

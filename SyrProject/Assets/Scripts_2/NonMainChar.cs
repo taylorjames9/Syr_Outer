@@ -29,9 +29,9 @@ public class NonMainChar : Character {
 			break;
 		case GAME_STATE.CHAIN_REACTION:
 			Debug.Log ("GAME SATE IN CHAIN REACTION");
-			Debug.Log ("myCurrTarget ="+myCurrTarget);
+			//Debug.Log ("myCurrTarget ="+myCurrTarget);
 			if(myCurrTarget != null){
-				Debug.Log ("SICCING TARGET");
+				//Debug.Log ("SICCING TARGET");
 				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
 			}
 			break;
@@ -47,14 +47,10 @@ public class NonMainChar : Character {
 		if (levelManScript.getGameState() == GAME_STATE.NONE) {
 			myQueueOBJ.SetActive (true);
 		} else if (levelManScript.getGameState() == GAME_STATE.RED_ARROW_OUT) {
-			Debug.Log ("MAIN RED ARROW OUT STATE and clicked nonMain character");
-			//Call main player arrow rotate method
 			activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 			activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
 			activeMainPlayerScript.rotateArrow (this);
-			Debug.Log ("Print this : " + this);
 			activeMainPlayerScript.setTargetUnderConsideration(this);
-			Debug.Log("Current target is "+activeMainPlayerScript.getTarget());
 		}
 	}
 }

@@ -42,10 +42,8 @@ public abstract class Character : MonoBehaviour {
 		myStartPosition = new Vector2(this.transform.position.x, this.transform.position.y);
 		Debug.Log ("Set everyone's positions.");
 		anim = GetComponent<Animator>();
-
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
-
 		myQueue_Script = myQueueOBJ.GetComponent<QueueScript1>();
 
 	}
@@ -75,17 +73,16 @@ public abstract class Character : MonoBehaviour {
 
 
 	public void setTarget(ItemParams.ITEM_COLOR clr){ 
-		Debug.Log ("Set Traget was called");
 		List<Character> chrsInLev = levelManScript.charsInLevel;
 		foreach(Character chr in chrsInLev){
-			Debug.Log ("int of enum chr "+chr.charParamet.myColor.ToString ());
-			Debug.Log ("int of enum clr"+clr.ToString());
+			//Debug.Log ("int of enum chr "+chr.charParamet.myColor.ToString ());
+			//Debug.Log ("int of enum clr"+clr.ToString());
 			if(chr.charParamet.myColor.ToString () == clr.ToString()){
-				Debug.Log ("chr = "+chr);
+				//Debug.Log ("chr = "+chr);
 				myCurrTarget = chr;
 				myCurrTarget.GetComponent<Character>().setAssailant((Character)this);
-				Debug.Log (" !!!!!!!!  My name is "+gameObject.name+" and my assailant is: "+getAssailant());
-				Debug.Log ("myCurrTarget 1111= "+myCurrTarget);
+				//Debug.Log (" !!!!!!!!  My name is "+gameObject.name+" and my assailant is: "+getAssailant());
+				//Debug.Log ("myCurrTarget 1111= "+myCurrTarget);
 			}
 			//else
 				//myCurrTarget = null;
@@ -109,7 +106,7 @@ public abstract class Character : MonoBehaviour {
 		}
 	}
 	public void sicTarget(Transform sicTarget, Item_Set item){
-		Debug.Log ("arrived = "+arrived);
+		//Debug.Log ("arrived = "+arrived);
 		if(!arrived ){
 			switchAnim(anim, 1);
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
@@ -128,28 +125,31 @@ public abstract class Character : MonoBehaviour {
 	}
 	
 	public virtual void OnTriggerEnter2D(Collider2D  other){
-		Debug.Log ("OTHER NAME "+other.name);
-		Debug.Log ("ATTACKING = "+attacking);
+		//Debug.Log ("OTHER NAME "+other.name);
+		//Debug.Log ("ATTACKING = "+attacking);
 		if (attacking){
 			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
-				Debug.Log ("INSIDE OF ATTACKING PORTION. game state main active");
+				//Debug.Log ("INSIDE OF ATTACKING PORTION. game state main active");
 				levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
 				switchAnim(anim, 2);	
 				setAttacking(false);
 				arrived = true;
+				Debug.Log ("Assailant's objects = "+myQueue_Script.myItemObjects);
+
 				//return;
 			}
 			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){
-				Debug.Log ("INSIDE OF ATTACKING PORTION. gamestate chain reaction");
+				//Debug.Log ("INSIDE OF ATTACKING PORTION. gamestate chain reaction");
 			}
 		}
 		else if (!attacking){
-			//Debug.Log ("Assailant name "+myAssailant.name);
-			Debug.Log ("SHOULD BE INSIDE NOT ATTACK STATE");
-
-			if (other.name == myAssailant.name){
-				Debug.Log ("We inside about to run reactToGetHit");
-				reactToGetHit(myAssailant.GetComponentInChildren<QueueScript1>().myItemObjects[0]);
+			Debug.Log ("Assailant name "+myAssailant.name);
+			Debug.Log ("myAssailant's objects = "+myAssailant.myQueue_Script.myItemObjects);
+			Debug.Log ("other.name = "+other.name);
+			Debug.Log ("other.name.Equals(myAssailant.name "+other.name.Equals(myAssailant.name));
+			if (other.name.Equals(myAssailant.name)){
+				Debug.Log ("BINGO");
+				reactToGetHit(myAssailant.myQueue_Script.myItemObjects[0]);
 			}
 		}
 	}
