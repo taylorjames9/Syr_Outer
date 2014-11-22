@@ -17,6 +17,8 @@ public class MainChar : Character {
 
 	void Update(){
 
+		Debug.Log ("My character is: "+this.charParamet.myColor+ " and my attacking status is: "+getAttacking());
+
 		switch(levelManScript.getGameState()){
 		case GAME_STATE.NONE:
 
@@ -28,7 +30,6 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
-			//Debug.Log("Inside of gamestate main chara active");
 			myArrow.SetActive (false);
 			myQueueOBJ.SetActive (false);
 			sicTarget (getTarget ().transform, myQueue_Script.myItemObjects[0]);
@@ -36,6 +37,9 @@ public class MainChar : Character {
 		case GAME_STATE.CHAIN_REACTION:
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
+			}
+			if(!attacking && (Vector2)transform.position != myStartPosition){
+				walkBackToStartPosition(myStartPosition);
 			}
 			break;
 		case GAME_STATE.LEVEL_END:

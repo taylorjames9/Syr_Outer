@@ -5,14 +5,12 @@ using System.Collections.Generic;
 [System.Serializable]
 public class charParams
 {
-
 	public enum CHARACTER_COLOR {NULL, BLUE, YELLOW, ORANGE, PURPLE, RED, BLACK, GREEN, WHITE, AQUA, BEIGE};
 	public enum TARGET_TYPE {None, BlackStabOnce, BlackStabTwice, Suicide, CockTail, BlackShootOnce, BlackShootTwice, Forget, Picture, Love, Inception, Implicate, Crazy, DoubleInception, Empty};
 	public enum RESILIENCE {None, ColorSyringe, BlackSyringe, Photo, Forget, Inception, GunShot, Pill, Love, Crazy, Empty};
 	public CHARACTER_COLOR myColor;
 	public TARGET_TYPE targetType;
 	public RESILIENCE myResilience;
-	
 }
 
 public abstract class Character : MonoBehaviour {
@@ -22,7 +20,6 @@ public abstract class Character : MonoBehaviour {
 	public GameObject myQueueOBJ;
 	protected QueueScript1 myQueue_Script;
 	public enum FACINGDIR {UP, DOWN, LEFT, RIGHT};
-
 	protected Character myCurrTarget;
 	protected Vector2 myStartPosition;
 	//protected 
@@ -45,8 +42,9 @@ public abstract class Character : MonoBehaviour {
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
 		myQueue_Script = myQueueOBJ.GetComponent<QueueScript1>();
-
 	}
+
+
 
 	public void setAssailant(Character assailor){ 
 		myAssailant = assailor;
@@ -62,9 +60,14 @@ public abstract class Character : MonoBehaviour {
 	public void setAttacking (bool tf){
 		if(tf){
 			attacking = true; 
+			this.collider2D.isTrigger = true;
+
 		}
-		else
+		else{
 			attacking = false;
+			this.collider2D.isTrigger = false;
+
+		}
 	}
 
 	public bool getAttacking(){
@@ -73,15 +76,14 @@ public abstract class Character : MonoBehaviour {
 
 
 	public void setTarget(ItemParams.ITEM_COLOR clr){ 
+		Debug.Log ("INSIDE OF SET TARGET");
 		List<Character> chrsInLev = levelManScript.charsInLevel;
 		foreach(Character chr in chrsInLev){
-			//Debug.Log ("int of enum chr "+chr.charParamet.myColor.ToString ());
-			//Debug.Log ("int of enum clr"+clr.ToString());
 			if(chr.charParamet.myColor.ToString () == clr.ToString()){
-				//Debug.Log ("chr = "+chr);
+				Debug.Log ("FOUND A MATCH _ SETTING TARGET");
 				myCurrTarget = chr;
-				myCurrTarget.GetComponent<Character>().setAssailant((Character)this);
-				//Debug.Log (" !!!!!!!!  My name is "+gameObject.name+" and my assailant is: "+getAssailant());
+				myCurrTarget.GetComponent<Character>().setAssailant(this);
+				Debug.Log (" !!!!!!!!  My name is "+gameObject.name+" and my assailant is: "+getAssailant());
 				//Debug.Log ("myCurrTarget 1111= "+myCurrTarget);
 			}
 			//else
@@ -94,30 +96,29 @@ public abstract class Character : MonoBehaviour {
 	
 	}
 	public void reactToGetHit (Item_Set item){ 
+		Debug.Log ("SYRINGE ITEM to REACt TO IS: "+item);
+		Debug.Log ("Someone should be reacting to getting hit");
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
 			arrived = false;
-			setAttacking(true);
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			Debug.Log ("THE FUCNTION OF THE SYRINGE IS SET TARGET");
+			Debug.Log ("My name is "+gameObject.name+" and I just got hit with a set target SYRINGE");
+			Debug.Log ("Color of syringe that I got hit with is: "+item.paramet.itemColor);
 			setTarget(item.paramet.itemColor);
 			arrived = false;
 			setAttacking(true);
 		}
 	}
 	public void sicTarget(Transform sicTarget, Item_Set item){
-		//Debug.Log ("arrived = "+arrived);
 		if(!arrived ){
 			switchAnim(anim, 1);
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 		}
-		else if(arrived && attacking){
+		else if(arrived && getAttacking()){
 				switchAnim(anim, 2);
-				setAttacking(false);
-				levelManScript.myGameState = GAME_STATE.CHAIN_REACTION;
 		}
-
 	}  //this can be walk to or aim
 	public void hitTarget(){ }
 	public void returnToOrigPosition( ){ }
@@ -127,30 +128,28 @@ public abstract class Character : MonoBehaviour {
 	}
 	
 	public virtual void OnTriggerEnter2D(Collider2D  other){
-		//Debug.Log ("OTHER NAME "+other.name);
-		//Debug.Log ("ATTACKING = "+attacking);
-		if (attacking){
+		Debug.Log ("Inside TRIGGER. This message should appear twice");
+		if (getAttacking()){
 			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
-				//Debug.Log ("INSIDE OF ATTACKING PORTION. game state main active");
+				Debug.Log ("WHERE WE WANNA BE");
 				levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
+				Debug.Log ("game state switched to chain reaction");
+				walkBackToStartPosition(myStartPosition);
 				switchAnim(anim, 2);	
-				setAttacking(false);
 				arrived = true;
-				Debug.Log ("Assailant's objects = "+myQueue_Script.myItemObjects);
+				setAttacking(false); /******    ****/
 			}
-			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){
-				Debug.Log ("This orange muffa should be moving");
-				setAttacking(false);
+			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){				arrived = true;
+				walkBackToStartPosition(myStartPosition);
 				arrived = true;
-				Debug.Log ("Assailant's objects = "+myQueue_Script.myItemObjects);
+				setAttacking(false);  /******    ****/
 			}
 		}
-		else if (!attacking){
-			Debug.Log ("Assailant name "+myAssailant.name);
-			Debug.Log ("myAssailant's objects = "+myAssailant.myQueue_Script.myItemObjects);
-			Debug.Log ("other.name = "+other.name);
-			Debug.Log ("other.name.Equals(myAssailant.name "+other.name.Equals(myAssailant.name));
-			if (other.name.Equals(myAssailant.name)){
+		else if (!getAttacking()){
+			Debug.Log ("BACKAKAKAKAKAKA");
+			Debug.Log ("other name ="+other.name);
+			Debug.Log("myAssailantName ="+myAssailant.name);
+			if (other.name == myAssailant.name){
 				Debug.Log ("BINGO");
 				reactToGetHit(myAssailant.myQueue_Script.myItemObjects[0]);
 			}
@@ -158,8 +157,7 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	public void walkBackToStartPosition(Vector2 startPosition){
-		//turn to face origin position
-		//transform.position = Vector2.MoveTowards(transform.position, target, 0.02f);
-		//play walk animation
+		//setAttacking(false);
+		transform.position = Vector2.MoveTowards(this.transform.position, startPosition, 0.02f);
 	}
 }

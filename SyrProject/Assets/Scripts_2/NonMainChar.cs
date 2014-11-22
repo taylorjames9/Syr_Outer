@@ -13,6 +13,9 @@ public class NonMainChar : Character {
 	}
 
 	void Update(){
+
+		Debug.Log ("My character is: "+this.charParamet.myColor+ " and my attacking status is: "+getAttacking());
+
 		
 		switch(levelManScript.getGameState()){
 		case GAME_STATE.NONE:
@@ -31,6 +34,9 @@ public class NonMainChar : Character {
 			Debug.Log ("GAME SATE IN CHAIN REACTION");
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
+			}
+			if(!attacking && (Vector2) transform.position != myStartPosition){
+				walkBackToStartPosition(myStartPosition);
 			}
 			break;
 		case GAME_STATE.LEVEL_END:
