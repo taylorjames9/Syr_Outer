@@ -13,9 +13,6 @@ public class NonMainChar : Character {
 	}
 
 	void Update(){
-
-		Debug.Log ("My character is: "+this.charParamet.myColor+ " and my attacking status is: "+getAttacking());
-
 		
 		switch(levelManScript.getGameState()){
 		case GAME_STATE.NONE:

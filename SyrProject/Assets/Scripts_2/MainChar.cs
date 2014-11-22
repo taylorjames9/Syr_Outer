@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MainChar : Character {
 	
@@ -8,16 +9,20 @@ public class MainChar : Character {
 	private bool isConsideringTarget;
 	private Character targetUnderConsideration;
 	private bool isActingAsMain = true;
+	//public List<Character> allCharsInScene = new List<Character>();
+	private int randomNumForThisLevel;
 
 	public override void Start(){
 		base.Start();
 		anim.SetInteger("MainInt", 0); 
 		myArrow.SetActive (false);
+		Debug.Log ("Random ass count "+levelManScript.charsInLevel.Count());
+		randomNumForThisLevel = Random.Range (1, levelManScript.charsInLevel.Count());
+		Debug.Log("Random num = "+randomNumForThisLevel);
+		targetUnderConsideration = levelManScript.charsInLevel[randomNumForThisLevel];
 	}
 
 	void Update(){
-
-		Debug.Log ("My character is: "+this.charParamet.myColor+ " and my attacking status is: "+getAttacking());
 
 		switch(levelManScript.getGameState()){
 		case GAME_STATE.NONE:
@@ -30,8 +35,6 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
-			myArrow.SetActive (false);
-			myQueueOBJ.SetActive (false);
 			sicTarget (getTarget ().transform, myQueue_Script.myItemObjects[0]);
 			break;
 		case GAME_STATE.CHAIN_REACTION:
@@ -55,6 +58,12 @@ public class MainChar : Character {
 		myQueueOBJ.SetActive (true);
 		if (tapOnMeCounter > 1) {
 			myArrow.SetActive (true);
+			/*
+			 *Regarding the line below. When setting the Character objects in the inspector, always
+			 *place the first one, first. 
+			 * 
+			 */
+			rotateArrow(levelManScript.charsInLevel[randomNumForThisLevel]);
 			levelManScript.setGameState(GAME_STATE.RED_ARROW_OUT); 
 			gameObject.tag="ActiveMain";
 		} else if (tapOnMeCounter > 3) {

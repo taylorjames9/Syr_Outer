@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public GAME_STATE myGameState;
 
 	//add these in inspector
-	public List<Character> charsInLevel;
+	public List<Character> charsInLevel; 
 	
 	public void setGameState(GAME_STATE myGam ){
 		myGameState = myGam;

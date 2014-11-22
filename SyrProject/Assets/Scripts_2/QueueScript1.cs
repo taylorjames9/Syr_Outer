@@ -44,7 +44,7 @@ public class QueueScript1 : MonoBehaviour {
 
 	}
 
-	public void removeObjectFromOwnerQueue(){
+	public void removeUsedObjectFromOwnerQueue(){
 
 	}
 
