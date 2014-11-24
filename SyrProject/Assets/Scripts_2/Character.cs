@@ -99,7 +99,7 @@ public abstract class Character : MonoBehaviour {
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 		}
 		else if(arrived && getAttacking()){
-				switchAnim(anim, 2);
+				//switchAnim(anim, 2);
 		}
 	}  //this can be walk to or aim
 	public void hitTarget(){ }
@@ -112,17 +112,19 @@ public abstract class Character : MonoBehaviour {
 	public virtual void OnTriggerEnter2D(Collider2D  other){
 		if (getAttacking()){
 			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
-				levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
-				walkBackToStartPosition(myStartPosition);
-				switchAnim(anim, 2);	
+				myCurrTarget = null;
 				arrived = true;
+				walkBackToStartPosition(myStartPosition);
 				setAttacking(false); 
+				switchAnim(anim, 2);
 				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
+				levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
 			}
 			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){				arrived = true;
-				walkBackToStartPosition(myStartPosition);
 				arrived = true;
-				setAttacking(false);  
+				walkBackToStartPosition(myStartPosition);
+				setAttacking(false);
+				switchAnim(anim, 2);
 				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
 			}
 		}

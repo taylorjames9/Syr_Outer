@@ -11,6 +11,11 @@ public class LevelManager : MonoBehaviour {
 
 	//add these in inspector
 	public List<Character> charsInLevel; 
+
+	void Start(){
+
+
+	}
 	
 	public void setGameState(GAME_STATE myGam ){
 		myGameState = myGam;

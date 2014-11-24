@@ -40,7 +40,10 @@ public class MainChar : Character {
 		case GAME_STATE.CHAIN_REACTION:
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
+				anim.SetInteger("MainInt", 1); 
 			}
+			else
+				anim.SetInteger("MainInt", 0); 
 			if(!attacking && (Vector2)transform.position != myStartPosition){
 				walkBackToStartPosition(myStartPosition);
 			}
@@ -88,6 +91,10 @@ public class MainChar : Character {
 
 	public void setMainTarget(Character chr){
 		myCurrTarget = chr;
+	}
+
+	public void clearMainTarget(){
+		myCurrTarget = null;
 	}
 
 	public void rearrangeQueue(Item item){
