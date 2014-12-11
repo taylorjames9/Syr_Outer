@@ -85,6 +85,7 @@ public abstract class Character : MonoBehaviour {
 	public void reactToGetHit (Item_Set item){ 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
+			switchAnim(anim, 3);
 			arrived = false;
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
