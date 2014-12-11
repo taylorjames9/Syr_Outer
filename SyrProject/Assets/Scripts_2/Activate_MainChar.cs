@@ -22,10 +22,11 @@ public class Activate_MainChar : MonoBehaviour {
 		activeMainPlayerScript.getTargetUnderConsideration().setAssailant(activeMainPlayerScript);
 		activeMainPlayerScript.setAttacking(true);
 		activeMainPlayerScript.myArrow.SetActive(false);
-		activeMainPlayerScript.myQueueOBJ.SetActive(false);
+		//uncomment the code below to hide all character queues when character first starts moving
+		/*activeMainPlayerScript.myQueueOBJ.SetActive(false);
 		foreach(Character chr in levelManScript.charsInLevel){
 			chr.myQueueOBJ.SetActive(false);
-		}
+		}*/
 		levelManScript.setGameState(GAME_STATE.MAINCHAR_ACTIVE);
 	}
 

@@ -31,9 +31,10 @@ public class QueueScript1 : MonoBehaviour {
 		this.gameObject.SetActive (false);
 
 		myOwner = transform.parent.gameObject;
+		foreach(Item_Set item in myItemObjects){
+			item.transform.renderer.enabled = false; 
+		}
 		displayNewQueueVisualFromOwnerQueueList ();
-		//myItemObjects = gameObject.GetComponentsInChildren(Transform);
-
 		Debug.Log ("My Item list " + myItemObjects);
 
 	}
@@ -45,7 +46,8 @@ public class QueueScript1 : MonoBehaviour {
 	}
 
 	public void removeUsedObjectFromOwnerQueue(){
-
+		myItemObjects[0].transform.renderer.enabled = false;
+		myItemObjects.RemoveAt(0);
 	}
 
 	public void animatePotentialNewIncomingObject(){
@@ -60,10 +62,13 @@ public class QueueScript1 : MonoBehaviour {
 		Debug.Log ("Ran displayQueue Method");
 		float leftMostPosition = gameObject.transform.position.x - (gameObject.transform.localScale.x / 2)+buffer;
 		foreach (Item_Set item in myItemObjects) {
-			Debug.Log ("Should be setting position.");
-			item.transform.position = new Vector3 (leftMostPosition + (offset * counter), transform.position.y, transform.position.z);
-			item.transform.parent = gameObject.transform;
-			counter++;
+			if(item != null){
+				item.transform.renderer.enabled = true;
+				Debug.Log ("Should be rearranging new queue");
+				item.transform.position = new Vector3 (leftMostPosition + (offset * counter), transform.position.y, transform.position.z);
+				item.transform.parent = gameObject.transform;
+				counter++;
+			}
 		}
 
 	}

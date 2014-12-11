@@ -35,18 +35,25 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
-			sicTarget (getTarget ().transform, myQueue_Script.myItemObjects[0]);
+			sicTarget (getTarget ().transform);
 			break;
 		case GAME_STATE.CHAIN_REACTION:
+
+			Debug.Log("My current target = "+myCurrTarget);
+
 			if(myCurrTarget != null){
-				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
+				sicTarget(myCurrTarget.transform);
 				anim.SetInteger("MainInt", 1); 
 			}
-			else
-				anim.SetInteger("MainInt", 0); 
-			if(!attacking && (Vector2)transform.position != myStartPosition){
+			/*else
+				anim.SetInteger("MainInt", 0); */
+			else if(myCurrTarget == null && !attacking && !inStartPosition()){
 				walkBackToStartPosition(myStartPosition);
 			}
+			else if(inStartPosition()){
+				anim.SetInteger("MainInt", 0);
+			}
+
 			break;
 		case GAME_STATE.LEVEL_END:
 			

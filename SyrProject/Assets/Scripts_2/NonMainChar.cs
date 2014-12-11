@@ -30,7 +30,7 @@ public class NonMainChar : Character {
 		case GAME_STATE.CHAIN_REACTION:
 			Debug.Log ("GAME SATE IN CHAIN REACTION");
 			if(myCurrTarget != null){
-				sicTarget(myCurrTarget.transform, myQueue_Script.myItemObjects[0]);
+				sicTarget(myCurrTarget.transform);
 			}
 			if(!attacking && (Vector2) transform.position != myStartPosition){
 				walkBackToStartPosition(myStartPosition);

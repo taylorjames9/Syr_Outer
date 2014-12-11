@@ -2,10 +2,11 @@
 -target:library
 -nowarn:0169
 -out:'Temp/Assembly-CSharp.dll'
--r:'/Applications/Unity/Unity4.5.5.app/Contents/Frameworks/Managed/UnityEngine.dll'
--r:'/Applications/Unity/Unity4.5.5.app/Contents/Frameworks/Managed/UnityEditor.dll'
--define:UNITY_4_5_5
--define:UNITY_4_5
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll'
+-define:UNITY_4_6_1
+-define:UNITY_4_6
 -define:UNITY_STANDALONE_OSX
 -define:ENABLE_MICROPHONE
 -define:ENABLE_TEXTUREID_MAP
@@ -21,6 +22,7 @@
 -define:ENABLE_MOVIES
 -define:ENABLE_WWW
 -define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_4_6_FEATURES
 -define:INCLUDE_WP_BLUE_SUPPORT
 -define:ENABLE_WEBCAM
 -define:INCLUDE_METROSUPPORT
@@ -54,5 +56,5 @@
 'Assets/Scripts_2/Q_Spot_Coll_Script.cs'
 'Assets/Scripts_2/QueueScript1.cs'
 'Assets/Scripts_2/Syringe.cs'
--r:'/Applications/Unity/Unity4.5.5.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
--r:'/Applications/Unity/Unity4.5.5.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'
