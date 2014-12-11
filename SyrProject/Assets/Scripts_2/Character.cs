@@ -31,6 +31,7 @@ public abstract class Character : MonoBehaviour {
 	protected bool attacking = false;
 	protected Item_Set itemToUse;
 	protected bool arrived;
+	protected bool iAmDead; 
 
 	protected Animator anim;
 
@@ -85,6 +86,7 @@ public abstract class Character : MonoBehaviour {
 	public void reactToGetHit (Item_Set item){ 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
+			iAmDead = true;
 			switchAnim(anim, 3);
 			arrived = false;
 		} 
@@ -117,7 +119,7 @@ public abstract class Character : MonoBehaviour {
 			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
 				myCurrTarget = null;
 				arrived = true;
-				walkBackToStartPosition(myStartPosition);
+				//walkBackToStartPosition(myStartPosition);
 				setAttacking(false); 
 				switchAnim(anim, 2);
 				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
@@ -131,7 +133,7 @@ public abstract class Character : MonoBehaviour {
 			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){				arrived = true;
 				myCurrTarget = null;
 				arrived = true;
-				walkBackToStartPosition(myStartPosition);
+				//walkBackToStartPosition(myStartPosition);
 				setAttacking(false);
 				switchAnim(anim, 2);
 				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
@@ -144,12 +146,14 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	public void walkBackToStartPosition(Vector2 startPosition){
+		switchAnim(anim, 1);
 		transform.position = Vector2.MoveTowards(this.transform.position, startPosition, 0.02f);
 	}
 
 	public bool inStartPosition(){
 		float dist = Vector3.Distance(transform.position, myStartPosition);
 		if(dist <= 0.1){
+			switchAnim(anim, 0);
 			return true;
 		}
 		else

@@ -43,15 +43,20 @@ public class MainChar : Character {
 
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform);
-				anim.SetInteger("MainInt", 1); 
+				//anim.SetInteger("MainInt", 1); 
+				//switchAnim(anim, 1);
 			}
 			/*else
 				anim.SetInteger("MainInt", 0); */
 			else if(myCurrTarget == null && !attacking && !inStartPosition()){
 				walkBackToStartPosition(myStartPosition);
+				//anim.SetInteger("MainInt", 1);
+				//switchAnim(anim, 1);
 			}
 			else if(inStartPosition()){
-				anim.SetInteger("MainInt", 0);
+				Debug.Log("Main char back in start position");
+				//anim.SetInteger("MainInt", 0);
+				//switchAnim(anim, 0);
 			}
 
 			break;

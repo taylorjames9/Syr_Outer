@@ -28,13 +28,23 @@ public class NonMainChar : Character {
 
 			break;
 		case GAME_STATE.CHAIN_REACTION:
-			Debug.Log ("GAME SATE IN CHAIN REACTION");
+			Debug.Log ("In start position = "+inStartPosition());
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform);
 			}
-			if(!attacking && (Vector2) transform.position != myStartPosition){
+		
+			else if(myCurrTarget == null && !attacking && !inStartPosition()){
+				Debug.Log ("WE STILL GETTING  A WALK ORDER "+this);
 				walkBackToStartPosition(myStartPosition);
 			}
+			else if(myCurrTarget == null && !attacking && inStartPosition() && !iAmDead ){
+				Debug.Log ("WE ARE ALIVE AND BACK IN START POS "+this);
+
+			}
+			else if(myCurrTarget == null && !attacking && inStartPosition() && iAmDead ){
+				Debug.Log ("WE ARE DEAD");
+			}
+
 			break;
 		case GAME_STATE.LEVEL_END:
 			
