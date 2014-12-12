@@ -44,11 +44,6 @@ public class MainChar : Character {
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform);
 			}
-//			else if(myCurrTarget == null){
-//				walkBackToStartPosition(myStartPosition);
-//				anim.SetInteger("MainInt", 0);
-//			}
-
 			break;
 		case GAME_STATE.LEVEL_END:
 			

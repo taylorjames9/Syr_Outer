@@ -97,7 +97,7 @@ public abstract class Character : MonoBehaviour {
 		}
 	}
 	public void sicTarget(Transform sicTarget){
-		if(!arrived && myQueue_Script.myItemObjects.Count >0){
+		if(!arrived && myQueue_Script.myItemObjects.Count > 0){
 			switchAnim(anim, 1);
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 		}
