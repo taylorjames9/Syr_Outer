@@ -39,25 +39,15 @@ public class MainChar : Character {
 			break;
 		case GAME_STATE.CHAIN_REACTION:
 
-			Debug.Log("My current target = "+myCurrTarget);
+			Debug.Log (this+" In start position = "+ inStartPosition());
 
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform);
-				//anim.SetInteger("MainInt", 1); 
-				//switchAnim(anim, 1);
 			}
-			/*else
-				anim.SetInteger("MainInt", 0); */
-			else if(myCurrTarget == null && !attacking && !inStartPosition()){
-				walkBackToStartPosition(myStartPosition);
-				//anim.SetInteger("MainInt", 1);
-				//switchAnim(anim, 1);
-			}
-			else if(inStartPosition()){
-				Debug.Log("Main char back in start position");
-				//anim.SetInteger("MainInt", 0);
-				//switchAnim(anim, 0);
-			}
+//			else if(myCurrTarget == null){
+//				walkBackToStartPosition(myStartPosition);
+//				anim.SetInteger("MainInt", 0);
+//			}
 
 			break;
 		case GAME_STATE.LEVEL_END:

@@ -28,21 +28,22 @@ public class NonMainChar : Character {
 
 			break;
 		case GAME_STATE.CHAIN_REACTION:
-			Debug.Log ("In start position = "+inStartPosition());
+			Debug.Log (this+" In start position = "+ inStartPosition());
 			if(myCurrTarget != null){
 				sicTarget(myCurrTarget.transform);
 			}
 		
-			else if(myCurrTarget == null && !attacking && !inStartPosition()){
-				Debug.Log ("WE STILL GETTING  A WALK ORDER "+this);
-				walkBackToStartPosition(myStartPosition);
-			}
-			else if(myCurrTarget == null && !attacking && inStartPosition() && !iAmDead ){
-				Debug.Log ("WE ARE ALIVE AND BACK IN START POS "+this);
-
-			}
-			else if(myCurrTarget == null && !attacking && inStartPosition() && iAmDead ){
-				Debug.Log ("WE ARE DEAD");
+//			else if(myCurrTarget == null){
+//				Debug.Log ("WE STILL GETTING  A WALK ORDER "+this);
+//				walkBackToStartPosition(myStartPosition);
+//			}
+//			else if(myCurrTarget == null && !attacking && inStartPosition() && !iAmDead ){
+//				Debug.Log ("WE ARE ALIVE AND BACK IN START POS "+this);
+//
+//			}
+			if(iAmDead){
+				Debug.Log ("I am DEAD");
+				switchAnim(anim, 3);
 			}
 
 			break;

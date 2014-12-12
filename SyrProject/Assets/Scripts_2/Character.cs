@@ -88,7 +88,7 @@ public abstract class Character : MonoBehaviour {
 			Debug.Log ("Victim drops dead");
 			iAmDead = true;
 			switchAnim(anim, 3);
-			arrived = false;
+			//arrived = false;
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			setTarget(item.paramet.itemColor);
@@ -118,10 +118,11 @@ public abstract class Character : MonoBehaviour {
 			//if this is the main characters first attack
 			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
 				myCurrTarget = null;
+
 				arrived = true;
-				//walkBackToStartPosition(myStartPosition);
-				setAttacking(false); 
+				walkBackToStartPosition(myStartPosition);
 				switchAnim(anim, 2);
+				setAttacking(false); 
 				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
 				//removeUsedItem from queue
 				//rearrange queue
@@ -132,10 +133,11 @@ public abstract class Character : MonoBehaviour {
 			//else if this is part of the chain reaction (after the main character's attack)
 			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){				arrived = true;
 				myCurrTarget = null;
+
 				arrived = true;
-				//walkBackToStartPosition(myStartPosition);
-				setAttacking(false);
+				walkBackToStartPosition(myStartPosition);
 				switchAnim(anim, 2);
+				setAttacking(false);
 				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
 				//removeUsedItem from queue
 				//rearrange queue
@@ -146,14 +148,17 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	public void walkBackToStartPosition(Vector2 startPosition){
-		switchAnim(anim, 1);
-		transform.position = Vector2.MoveTowards(this.transform.position, startPosition, 0.02f);
+
+		while(!inStartPosition()){
+			switchAnim(anim, 0);
+			transform.position = Vector2.MoveTowards(this.transform.position, startPosition, 0.02f);
+		}
 	}
 
 	public bool inStartPosition(){
+		Debug.Log ("I "+this+" back in START POSITION");
 		float dist = Vector3.Distance(transform.position, myStartPosition);
 		if(dist <= 0.1){
-			switchAnim(anim, 0);
 			return true;
 		}
 		else
