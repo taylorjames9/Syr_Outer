@@ -91,9 +91,15 @@ public abstract class Character : MonoBehaviour {
 			//arrived = false;
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
-			setTarget(item.paramet.itemColor);
-			arrived = false;
-			setAttacking(true);
+			//if the thing that I go hit with is not my color. 
+			Debug.Log("my charParamet color is "+ charParamet.myColor.ToString());
+			Debug.Log("my itemParamet color is "+item.paramet.itemColor.ToString());
+			//if(item.paramet.itemColor != charParamet.myColor){
+			if (!item.paramet.itemColor.ToString().Equals(charParamet.myColor.ToString())){
+				setTarget(item.paramet.itemColor);
+				arrived = false;
+				setAttacking(true);
+			}
 		}
 	}
 	public void sicTarget(Transform sicTarget){

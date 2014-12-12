@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\QueueScript.cs" />
      <Compile Include="Assets\Scripts_2\Activate_MainChar.cs" />
      <Compile Include="Assets\Scripts_2\Character.cs" />
+     <Compile Include="Assets\Scripts_2\Drag_Item.cs" />
      <Compile Include="Assets\Scripts_2\Item.cs" />
      <Compile Include="Assets\Scripts_2\Item_Set.cs" />
      <Compile Include="Assets\Scripts_2\LevelManager.cs" />

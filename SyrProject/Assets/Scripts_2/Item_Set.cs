@@ -22,6 +22,5 @@ public class Item_Set : MonoBehaviour {
 	//public Texture2D myTexture;
 
 	public ItemParams paramet;
-
-
+	
 }
