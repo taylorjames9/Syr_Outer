@@ -10,10 +10,28 @@ public class Drag_Item : MonoBehaviour
 	private Vector3 screenPoint;
 	private Vector3 offset;
 	private Vector3 startPosition;
+	private bool touchingWhereIWantToBe;
 
 	void Start(){
-		//StartCoroutine("getStartPosition");
 		startPosition = transform.position;
+
+
+
+	}
+
+	void OnCollisionStay2D(Collision2D coll) {
+		switch(coll.gameObject.name){
+		case "Orange_Spot1":
+			QueueScript1 orangeQueueScript = this.GetComponentInParent<QueueScript1>(); 
+			orangeQueueScript.myItemObjects.Insert(0, (Item_Set)coll.gameObject.GetComponent<Item_Set>());
+			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
+			touchingWhereIWantToBe = true;
+
+			break;
+		default:
+			break;
+		}
+
 	}
 	
 	void OnMouseDown()
@@ -33,17 +51,20 @@ public class Drag_Item : MonoBehaviour
 	}
 
 	void OnMouseUp(){
-		transform.position = startPosition;
+		if(touchingWhereIWantToBe){
+
+
+		}
+		else
+			transform.position = startPosition;
 	}
 
-	IEnumerator getStartPosition(){
-		Debug.Log("Before Waiting 1 seconds");
-		yield return new WaitForSeconds(0);
-		startPosition = transform.position;
-		Debug.Log("After Waiting 1 seconds");
-
-
+	public void setTouchingWhereIWantToBe(bool tf){
+		if(tf){
+			touchingWhereIWantToBe = true;
+		}
+		else
+			touchingWhereIWantToBe = false;
 	}
 
-	
 }
