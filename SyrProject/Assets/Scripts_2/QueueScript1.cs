@@ -12,6 +12,7 @@ public class QueueScript1 : MonoBehaviour {
 	private GameObject myPotentialOutgoingObject;
 
 	public List<Item_Set> myItemObjects = new List<Item_Set>();
+	public List<Transform> myQSpots = new List<Transform>();
 
 	//Each object inside the collider with a prefab will have a triggerEnter2D methods, which when active, will change these colliderBools
 	//might be easiest to make these into properties
@@ -59,18 +60,30 @@ public class QueueScript1 : MonoBehaviour {
 	}
 
 	public void displayNewQueueVisualFromOwnerQueueList(){
-		Debug.Log ("Ran displayQueue Method");
-		float leftMostPosition = gameObject.transform.position.x - (gameObject.transform.localScale.x / 2)+buffer;
-		foreach (Item_Set item in myItemObjects) {
-			if(item != null){
-				item.transform.renderer.enabled = true;
-				Debug.Log ("Should be rearranging new queue");
-				item.transform.position = new Vector3 (leftMostPosition + (offset * counter), transform.position.y, transform.position.z);
-				item.transform.parent = gameObject.transform;
-				counter++;
+
+			for(int i=0; i<myItemObjects.Count; i++){
+			if(myItemObjects[i] != null){
+				myItemObjects[i].transform.renderer.enabled = true;
+				myItemObjects[i].transform.parent = gameObject.transform;
+			 	myItemObjects[i].transform.position = myQSpots[i].transform.position;
 			}
 		}
-
 	}
+
+
+//	public void displayNewQueueVisualFromOwnerQueueList(){
+//		Debug.Log ("Ran displayQueue Method");
+//		float leftMostPosition = gameObject.transform.position.x - (gameObject.transform.localScale.x / 2)+buffer;
+//		foreach (Item_Set item in myItemObjects) {
+//			if(item != null){
+//				item.transform.renderer.enabled = true;
+//				Debug.Log ("Should be rearranging new queue");
+//				item.transform.position = new Vector3 (leftMostPosition + (offset * counter), transform.position.y, transform.position.z);
+//				item.transform.parent = gameObject.transform;
+//				counter++;
+//			}
+//		}
+//
+//	}
 
 }
