@@ -30,15 +30,81 @@ public class Drag_Item : MonoBehaviour
 				Debug.Log("TOUCHING ORANGE SPOT 1");
 				QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 				orangeQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
-				
 				orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 				touchingWhereIWantToBe = true;
-				//transform.position = coll.transform.position;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+			}
+			else if(coll.gameObject.name == "Orange_Spot2"){
+				Debug.Log("TOUCHING ORANGE SPOT 2");
+				QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				orangeQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
+				orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+
+			}
+			else if(coll.gameObject.name == "Orange_Spot3"){
+				Debug.Log("TOUCHING ORANGE SPOT 3");
+				QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				orangeQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
+				orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
 				itemGoesToThisSpot = (Vector2) coll.transform.position;
 				
-				/**
-				 * Make the parent of this thing the parent of the other object that you collided with
-				 * */
+			}
+			else if(coll.gameObject.name == "Blue_Spot1"){
+				Debug.Log("TOUCHING Blue SPOT 1");
+				QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				blueQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
+				blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+				
+			}
+			else if(coll.gameObject.name == "Blue_Spot2"){
+				Debug.Log("TOUCHING Blue SPOT 2");
+				QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				blueQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
+				blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+				
+			}
+			else if(coll.gameObject.name == "Blue_Spot3"){
+				Debug.Log("TOUCHING Blue SPOT 3");
+				QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				blueQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
+				blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+				
+			}
+			else if(coll.gameObject.name == "Green_Spot1"){
+				Debug.Log("TOUCHING green SPOT 0");
+				QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				greenQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
+				greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+				
+			}
+			else if(coll.gameObject.name == "Green_Spot2"){
+				Debug.Log("TOUCHING green SPOT 1");
+				QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				greenQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
+				greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+				
+			}
+			else if(coll.gameObject.name == "Green_Spot3"){
+				Debug.Log("TOUCHING green SPOT 2");
+				QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
+				greenQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
+				greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				touchingWhereIWantToBe = true;
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+				
 			}
 		}
 	}
