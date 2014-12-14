@@ -11,9 +11,9 @@ public class LevelManager : MonoBehaviour {
 
 	//add these in inspector
 	public List<Character> charsInLevel; 
+	public List<QueueScript1> myQObjs;
 
 	void Start(){
-
 
 	}
 	
@@ -24,4 +24,12 @@ public class LevelManager : MonoBehaviour {
 	public GAME_STATE getGameState(){
 		return myGameState;
 	}
+
+	public void sortAllQueuesInLevel(){
+		foreach(QueueScript1 qScript in myQObjs){
+			qScript.displayNewQueueVisualFromOwnerQueueList();
+		}
+	}
+
+
 }
