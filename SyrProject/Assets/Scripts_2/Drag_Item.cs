@@ -48,7 +48,7 @@ public class Drag_Item : MonoBehaviour
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			//levelManScript.sortAllQueuesInLevel();
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
 		}
 		else if(coll.gameObject.name == "Orange_Spot2"){
 			Debug.Log("TOUCHING ORANGE SPOT 2");
@@ -57,7 +57,8 @@ public class Drag_Item : MonoBehaviour
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 		}
 		else if(coll.gameObject.name == "Orange_Spot3"){
 			Debug.Log("TOUCHING ORANGE SPOT 3");
@@ -66,7 +67,8 @@ public class Drag_Item : MonoBehaviour
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 		}
 		else if(coll.gameObject.name == "Blue_Spot1"){
 			Debug.Log("TOUCHING Blue SPOT 1");
@@ -75,6 +77,8 @@ public class Drag_Item : MonoBehaviour
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 			
 		}
 		else if(coll.gameObject.name == "Blue_Spot2"){
@@ -84,6 +88,8 @@ public class Drag_Item : MonoBehaviour
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 			
 		}
 		else if(coll.gameObject.name == "Blue_Spot3"){
@@ -93,6 +99,8 @@ public class Drag_Item : MonoBehaviour
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 			
 		}
 		else if(coll.gameObject.name == "Green_Spot1"){
@@ -102,6 +110,8 @@ public class Drag_Item : MonoBehaviour
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 			
 		}
 		else if(coll.gameObject.name == "Green_Spot2"){
@@ -111,6 +121,8 @@ public class Drag_Item : MonoBehaviour
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 			
 		}
 		else if(coll.gameObject.name == "Green_Spot3"){
@@ -120,6 +132,8 @@ public class Drag_Item : MonoBehaviour
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
+			transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
+
 			
 		}
 

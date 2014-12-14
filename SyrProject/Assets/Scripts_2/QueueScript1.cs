@@ -36,7 +36,7 @@ public class QueueScript1 : MonoBehaviour {
 			item.transform.renderer.enabled = false; 
 		}
 		displayNewQueueVisualFromOwnerQueueList ();
-		Debug.Log ("My Item list " + myItemObjects);
+		//Debug.Log ("My Item list " + myItemObjects);
 
 	}
 
@@ -60,9 +60,12 @@ public class QueueScript1 : MonoBehaviour {
 	}
 
 	public void displayNewQueueVisualFromOwnerQueueList(){
+		Debug.Log("Number of Queue items in list for"+this.transform.parent.name+" : "+myItemObjects.Count);
+		Debug.Log("Queue items in list for"+this.transform.parent.name+" : "+myItemObjects);
 
 			for(int i=0; i<myItemObjects.Count; i++){
-			if(myItemObjects[i] != null){
+			myItemObjects[i].transform.tag = i.ToString();
+			if(myItemObjects.Count > 0 && myItemObjects[i] != null){
 				myItemObjects[i].transform.renderer.enabled = true;
 				myItemObjects[i].transform.parent = gameObject.transform;
 			 	myItemObjects[i].transform.position = myQSpots[i].transform.position;
