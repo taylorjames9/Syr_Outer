@@ -61,7 +61,7 @@ public class QueueScript1 : MonoBehaviour {
 
 	public void displayNewQueueVisualFromOwnerQueueList(){
 		Debug.Log("Number of Queue items in list for"+this.transform.parent.name+" : "+myItemObjects.Count);
-		Debug.Log("Queue items in list for"+this.transform.parent.name+" : "+myItemObjects);
+		//Debug.Log("Queue items in list for"+this.transform.parent.name+" : "+myItemObjects);
 
 			for(int i=0; i<myItemObjects.Count; i++){
 			myItemObjects[i].transform.tag = i.ToString();
