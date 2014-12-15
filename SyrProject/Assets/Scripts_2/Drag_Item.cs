@@ -55,7 +55,7 @@ public class Drag_Item : MonoBehaviour
 		else if(coll.gameObject.name == "Orange_Spot2"){
 			Debug.Log("TOUCHING ORANGE SPOT 2");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			if(orangeQueueScript.myItemObjects.Count >= 2){
+			if(orangeQueueScript.myItemObjects.Count > 0){
 				Debug.Log ("GOING INTO ORANGE SPT 2");
 				orangeQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
 				itemGoesToThisSpot = (Vector2) coll.transform.position;
@@ -73,7 +73,7 @@ public class Drag_Item : MonoBehaviour
 				orangeQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
 				itemGoesToThisSpot = (Vector2) coll.transform.position;
 			} 
-			else if(orangeQueueScript.myItemObjects.Count >= 1){
+			else if(orangeQueueScript.myItemObjects.Count == 1){
 				orangeQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
 				itemGoesToThisSpot = (Vector2) orangeQueueScript.myQSpots[1].transform.position;
 			}
@@ -93,7 +93,6 @@ public class Drag_Item : MonoBehaviour
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
 			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
-
 		}
 		else if(coll.gameObject.name == "Blue_Spot2"){
 			Debug.Log("TOUCHING Blue SPOT 2");
