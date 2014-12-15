@@ -55,31 +55,34 @@ public class Drag_Item : MonoBehaviour
 		else if(coll.gameObject.name == "Orange_Spot2"){
 			Debug.Log("TOUCHING ORANGE SPOT 2");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			if(orangeQueueScript.myItemObjects.Count > 1){
+			if(orangeQueueScript.myItemObjects.Count > 0){
+				Debug.Log ("GOING INTO ORANGE SPT 2");
 				orangeQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
-			} else
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+			} else {
 				orangeQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
+				itemGoesToThisSpot = (Vector2) orangeQueueScript.myQSpots[0].transform.position;
+			}
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
-			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
-
 		}
 		else if(coll.gameObject.name == "Orange_Spot3"){
 			Debug.Log("TOUCHING ORANGE SPOT 3");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			if(orangeQueueScript.myItemObjects.Count > 2){
+			if(orangeQueueScript.myItemObjects.Count > 1){
 				orangeQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
 			} 
-			else if(orangeQueueScript.myItemObjects.Count > 1){
+			else if(orangeQueueScript.myItemObjects.Count == 1){
 				orangeQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
+				itemGoesToThisSpot = (Vector2) orangeQueueScript.myQSpots[1].transform.position;
 			}
 			else{
 				orangeQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
+				itemGoesToThisSpot = (Vector2) orangeQueueScript.myQSpots[0].transform.position;
 			}
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
-			itemGoesToThisSpot = (Vector2) coll.transform.position;
 			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
 		}
 		else if(coll.gameObject.name == "Blue_Spot1"){
@@ -148,35 +151,34 @@ public class Drag_Item : MonoBehaviour
 		else if(coll.gameObject.name == "Green_Spot2"){
 			Debug.Log("TOUCHING green SPOT 1");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			if(greenQueueScript.myItemObjects.Count > 1){
+			if(greenQueueScript.myItemObjects.Count > 0){
+				Debug.Log ("GOING INTO GREEN SPT 2");
 				greenQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
-			} else
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
+			} else {
 				greenQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
-			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
+				itemGoesToThisSpot = (Vector2) greenQueueScript.myQSpots[0].transform.position;
+			}
 			touchingWhereIWantToBe = true;
-			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
-
-			
 		}
 		else if(coll.gameObject.name == "Green_Spot3"){
 			Debug.Log("TOUCHING green SPOT 2");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			if(greenQueueScript.myItemObjects.Count > 2){
-			greenQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
+			if(greenQueueScript.myItemObjects.Count > 1){
+				greenQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
+				itemGoesToThisSpot = (Vector2) coll.transform.position;
 			} 
-			else if(greenQueueScript.myItemObjects.Count > 1){
+			else if(greenQueueScript.myItemObjects.Count == 1){
 				greenQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
+				itemGoesToThisSpot = (Vector2) greenQueueScript.myQSpots[1].transform.position;
+				
 			}
 			else{
 				greenQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
+				itemGoesToThisSpot = (Vector2) greenQueueScript.myQSpots[0].transform.position;
 			}
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
-			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
-
-			
 		}
 
 	}
