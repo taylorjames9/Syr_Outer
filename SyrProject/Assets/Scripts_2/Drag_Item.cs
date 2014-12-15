@@ -192,7 +192,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 0;
 			Debug.Log("Removing from ORANGE SPOT 1");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			orangeQueueScript.myItemObjects.RemoveAt(orangeQueueScript.myItemObjects.Count-1);
+			orangeQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -203,7 +203,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 1;
 			Debug.Log("Removing from ORANGE SPOT 2!!!!");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			orangeQueueScript.myItemObjects.RemoveAt(orangeQueueScript.myItemObjects.Count -1);
+			orangeQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -214,7 +214,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 2;
 			Debug.Log("Removing from ORANGE SPOT 3");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			orangeQueueScript.myItemObjects.RemoveAt(orangeQueueScript.myItemObjects.Count -1);
+			orangeQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -226,7 +226,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 0;
 			Debug.Log("removing from Blue SPOT 1");
 			QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			blueQueueScript.myItemObjects.RemoveAt(blueQueueScript.myItemObjects.Count -1);
+			blueQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -238,7 +238,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 1;
 			Debug.Log("Removing from Blue SPOT 2");
 			QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			blueQueueScript.myItemObjects.RemoveAt(blueQueueScript.myItemObjects.Count -1);
+			blueQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -250,7 +250,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 2;
 			Debug.Log("Removing From Blue SPOT 3");
 			QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			blueQueueScript.myItemObjects.RemoveAt(blueQueueScript.myItemObjects.Count -1);
+			blueQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -262,7 +262,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 0;
 			Debug.Log("Removing from green SPOT 1");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			greenQueueScript.myItemObjects.RemoveAt(greenQueueScript.myItemObjects.Count -1);
+			greenQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -274,7 +274,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 1;
 			Debug.Log("Removing from green SPOT 2");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			greenQueueScript.myItemObjects.RemoveAt(greenQueueScript.myItemObjects.Count -1);
+			greenQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
@@ -285,7 +285,7 @@ public class Drag_Item : MonoBehaviour
 			positionICameFrom = 2;
 			Debug.Log("Removing from green SPOT 3");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
-			greenQueueScript.myItemObjects.RemoveAt(greenQueueScript.myItemObjects.Count -1);
+			greenQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = false;
 			itemGoesToThisSpot = (Vector2) startPosition;
