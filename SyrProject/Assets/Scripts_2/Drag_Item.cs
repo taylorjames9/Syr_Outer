@@ -137,7 +137,7 @@ public class Drag_Item : MonoBehaviour
 			
 		}
 		else if(coll.gameObject.name == "Green_Spot1"){
-			Debug.Log("TOUCHING green SPOT 0");
+			Debug.Log("TOUCHING green SPOT 1");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			greenQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
@@ -148,7 +148,7 @@ public class Drag_Item : MonoBehaviour
 			
 		}
 		else if(coll.gameObject.name == "Green_Spot2"){
-			Debug.Log("TOUCHING green SPOT 1");
+			Debug.Log("TOUCHING green SPOT 2");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			if(greenQueueScript.myItemObjects.Count > 0){
 				Debug.Log ("GOING INTO GREEN SPT 2");
@@ -158,10 +158,11 @@ public class Drag_Item : MonoBehaviour
 				greenQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
 				itemGoesToThisSpot = (Vector2) greenQueueScript.myQSpots[0].transform.position;
 			}
+			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 		}
 		else if(coll.gameObject.name == "Green_Spot3"){
-			Debug.Log("TOUCHING green SPOT 2");
+			Debug.Log("TOUCHING green SPOT 3");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			if(greenQueueScript.myItemObjects.Count >= 2){
 				greenQueueScript.myItemObjects.Insert(2, this.GetComponent<Item_Set>());
