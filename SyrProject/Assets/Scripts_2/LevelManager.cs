@@ -91,22 +91,22 @@ public class LevelManager : MonoBehaviour {
 			satisfyGoalsList++;
 		}
 		else{
-			Debug.Log("FAILED THE level: DUE TO LIABILITIES");
+			//Debug.Log("LEVEL STATUS: FAILED \nCAUSE: OUTSTANDING LIABILITIES");
 			panelRectTransform.gameObject.SetActive(true);
-			howdIDo.text = "FAILED THE level: DUE TO LIABILITIES";
+			howdIDo.text = "LEVEL STATUS: FAILED \n\nCAUSE: OUTSTANDING LIABILITIES";
 			return false;
 		}
 
 		if(satisfyGoalsList >= numGoalsThisLevel){
-			Debug.Log("WE SATISFIED ALL GOALS To BEAT the level!!!");
+			//Debug.Log("LEVEL STATUS: PASS \n\nALL GOALS COMPLETE");
 			panelRectTransform.gameObject.SetActive(true);
-			howdIDo.text = "SATISFIED ALL GOALS TO BEAT THE LEVEL";
+			howdIDo.text = "LEVEL STATUS: PASS \n\nALL GOALS COMPLETE";
 			return true;
 		}
 		else{
-			Debug.Log("WE FAILED THE level: NOT ALL GOALS COMPLETE");
+			//Debug.Log("LEVEL STATUS: FAILED \nCAUSE: \nNOT ALL GOALS COMPLETE");
 			panelRectTransform.gameObject.SetActive(true);
-			howdIDo.text = "WE FAILED THE level: NOT ALL GOALS COMPLETE";
+			howdIDo.text = "LEVEL STATUS: FAILED \n\nCAUSE: NOT ALL GOALS COMPLETE";
 			return false;
 		}
 	}
