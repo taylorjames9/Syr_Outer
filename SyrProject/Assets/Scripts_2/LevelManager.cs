@@ -13,9 +13,26 @@ public class LevelManager : MonoBehaviour {
 	public List<Character> charsInLevel; 
 	public List<QueueScript1> myQObjs;
 
+	public static bool bDeathInLevel;
+
 	void Start(){
 
 	}
+
+	void Update(){
+		if(bDeathInLevel){
+			Debug.Log ("bDeathinLevel");
+			foreach(Character character in charsInLevel){
+				Debug.Log ("foreach loop");
+				if(!character.getDead() && character.getLiability()){
+					Debug.Log ("SettingLiability to true");
+					character.setLiability(true);
+				}
+			}
+			bDeathInLevel = false;
+		}
+	}
+
 	
 	public void setGameState(GAME_STATE myGam ){
 		myGameState = myGam;

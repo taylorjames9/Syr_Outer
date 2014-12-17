@@ -32,6 +32,7 @@ public abstract class Character : MonoBehaviour {
 	protected Item_Set itemToUse;
 	protected bool arrived;
 	protected bool iAmDead; 
+	protected bool potentialLiability;
 
 	protected Animator anim;
 
@@ -41,6 +42,7 @@ public abstract class Character : MonoBehaviour {
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
 		levelManScript = levelManagerOBJ.GetComponent <LevelManager>();
 		myQueue_Script = myQueueOBJ.GetComponent<QueueScript1>();
+		potentialLiability = true;
 	}
 	
 	public void setAssailant(Character assailor){ 
@@ -86,8 +88,10 @@ public abstract class Character : MonoBehaviour {
 	public void reactToGetHit (Item_Set item){ 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
-			iAmDead = true;
+			//iAmDead = true;
+			setDead(true);
 			switchAnim(anim, 3);
+			LevelManager.bDeathInLevel = true;
 			//arrived = false;
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
@@ -110,11 +114,34 @@ public abstract class Character : MonoBehaviour {
 		}
 		else if(arrived && getAttacking()){
 				//switchAnim(anim, 2);
+
 		}
 	}  //this can be walk to or aim
 	public void hitTarget(){ }
 	public void returnToOrigPosition( ){ }
-	public void setLiability (bool lia) { }
+	public void setLiability (bool lia) { 
+		potentialLiability = lia;
+		if(lia){
+			Debug.Log("Should be activating liability marker");
+			Transform liabilityVisual = this.transform.FindChild("LiabilityMarkers");
+			liabilityVisual.gameObject.SetActive(true);
+			liabilityVisual.transform.renderer.enabled = true;
+		}
+	}
+	public bool getLiability () { 
+		return potentialLiability;
+	}
+
+	public void setDead(bool dead){
+		iAmDead = dead;
+		LevelManager.bDeathInLevel = true;
+	}
+
+	public bool getDead(){
+		return iAmDead;
+	}
+
+
 	public void switchAnim(Animator anim0, int anim_state){
 		anim0.SetInteger("MainInt", anim_state);
 	}
@@ -125,7 +152,6 @@ public abstract class Character : MonoBehaviour {
 			//if this is the main characters first attack
 			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
 				myCurrTarget = null;
-
 				arrived = true;
 				walkBackToStartPosition(myStartPosition);
 				switchAnim(anim, 2);
@@ -136,11 +162,11 @@ public abstract class Character : MonoBehaviour {
 				myQueue_Script.removeUsedObjectFromOwnerQueue(); 
 				myQueue_Script.displayNewQueueVisualFromOwnerQueueList();
 				levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
+				setLiability(false);
 			}
 			//else if this is part of the chain reaction (after the main character's attack)
 			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){				arrived = true;
 				myCurrTarget = null;
-
 				arrived = true;
 				walkBackToStartPosition(myStartPosition);
 				switchAnim(anim, 2);
@@ -150,6 +176,7 @@ public abstract class Character : MonoBehaviour {
 				//rearrange queue
 				myQueue_Script.removeUsedObjectFromOwnerQueue(); 
 				myQueue_Script.displayNewQueueVisualFromOwnerQueueList();
+				setLiability(false);
 			}
 		}
 	}
