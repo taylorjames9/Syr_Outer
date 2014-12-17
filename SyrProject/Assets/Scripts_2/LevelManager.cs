@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 
 public enum GAME_STATE {NONE, LEVEL_START, RED_ARROW_OUT, MAINCHAR_ACTIVE, CHAIN_REACTION, LEVEL_END};
 
@@ -11,12 +11,20 @@ public class LevelManager : MonoBehaviour {
 
 	//add these in inspector
 	public List<Character> charsInLevel; 
+	public List<Character> eliminateThese;
+	public List<Character> photoThese;
 	public List<QueueScript1> myQObjs;
 
 	public static bool bDeathInLevel;
+	public static int liabilityCounter;
+	public int numGoalsThisLevel;
+	public RectTransform panelRectTransform;
+	public Text howdIDo;
+
 
 	void Start(){
-
+		liabilityCounter = 0;
+		panelRectTransform.gameObject.SetActive(false);
 	}
 
 	void Update(){
@@ -27,8 +35,11 @@ public class LevelManager : MonoBehaviour {
 				if(!character.getDead() && character.getLiability()){
 					Debug.Log ("SettingLiability to true");
 					character.setLiability(true);
+					liabilityCounter++;
 				}
 			}
+			//checkGameOver();
+			checkWin();
 			bDeathInLevel = false;
 		}
 	}
@@ -48,5 +59,55 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	//check if game over
+	//check if win/lose
 
+//	public bool checkGameOver(){
+//		//eliminateThese.Count ==
+//		
+//	}
+
+	public bool checkWin(){
+		Debug.Log ("CHECKING WIIIN");
+		int satisfyGoalsList = 0;
+		foreach(Character elimTarget in eliminateThese){
+			if(elimTarget.getDead()){
+				Debug.Log ("THAT'S ONE TARGET DOWN");
+				continue;
+			}
+			else{
+				return false;
+			}
+		}
+		satisfyGoalsList++;
+		Debug.Log("I HAVE COMPLETED THIS MANY GOALS"+ satisfyGoalsList);
+		/*foreach(Character photoTarget in photoThese){
+			if(!photoTarget.getPhotoed()){
+				return false;
+			}
+		}*/
+		//satisfyGoalsList++;
+		if(liabilityCounter == 0){
+			satisfyGoalsList++;
+		}
+		else{
+			Debug.Log("FAILED THE level: DUE TO LIABILITIES");
+			panelRectTransform.gameObject.SetActive(true);
+			howdIDo.text = "FAILED THE level: DUE TO LIABILITIES";
+			return false;
+		}
+
+		if(satisfyGoalsList >= numGoalsThisLevel){
+			Debug.Log("WE SATISFIED ALL GOALS To BEAT the level!!!");
+			panelRectTransform.gameObject.SetActive(true);
+			howdIDo.text = "SATISFIED ALL GOALS TO BEAT THE LEVEL";
+			return true;
+		}
+		else{
+			Debug.Log("WE FAILED THE level: NOT ALL GOALS COMPLETE");
+			panelRectTransform.gameObject.SetActive(true);
+			howdIDo.text = "WE FAILED THE level: NOT ALL GOALS COMPLETE";
+			return false;
+		}
+	}
 }

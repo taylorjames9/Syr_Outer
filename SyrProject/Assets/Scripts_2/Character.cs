@@ -92,6 +92,11 @@ public abstract class Character : MonoBehaviour {
 			setDead(true);
 			switchAnim(anim, 3);
 			LevelManager.bDeathInLevel = true;
+//			if(levelManScript.checkGameOver()){
+//				Debug.Log ("INVOKING CHECK WIN");
+//				Invoke("levelManScript.checkWin", 4.0f);
+//			}
+
 			//arrived = false;
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
