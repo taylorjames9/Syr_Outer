@@ -100,7 +100,7 @@ public class LevelManager : MonoBehaviour {
 		if(satisfyGoalsList >= numGoalsThisLevel){
 			//Debug.Log("LEVEL STATUS: PASS \n\nALL GOALS COMPLETE");
 			panelRectTransform.gameObject.SetActive(true);
-			howdIDo.text = "LEVEL STATUS: PASS \n\nALL GOALS COMPLETE";
+			howdIDo.text = "LEVEL STATUS:\nPASS\n\nALL GOALS COMPLETE";
 			return true;
 		}
 		else{
