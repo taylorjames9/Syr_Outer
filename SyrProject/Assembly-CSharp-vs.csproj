@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts_2\Q_Spot_Coll_Script.cs" />
      <Compile Include="Assets\Scripts_2\QueueScript1.cs" />
      <Compile Include="Assets\Scripts_2\Syringe.cs" />
+     <Compile Include="Assets\Scripts_2\Tutorial_1.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

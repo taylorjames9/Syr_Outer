@@ -41,7 +41,7 @@ public class MainChar : Character {
 
 			Debug.Log (this+" In start position = "+ inStartPosition());
 
-			if(myCurrTarget != null){
+			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count > 0){
 				sicTarget(myCurrTarget.transform);
 			}
 			break;
