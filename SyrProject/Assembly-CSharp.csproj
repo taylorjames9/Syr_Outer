@@ -46,18 +46,18 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts_2\Activate_MainChar.cs" />
-     <Compile Include="Assets\Scripts_2\Character.cs" />
-     <Compile Include="Assets\Scripts_2\Drag_Item.cs" />
-     <Compile Include="Assets\Scripts_2\Item.cs" />
-     <Compile Include="Assets\Scripts_2\Item_Set.cs" />
-     <Compile Include="Assets\Scripts_2\LevelManager.cs" />
-     <Compile Include="Assets\Scripts_2\MainChar.cs" />
-     <Compile Include="Assets\Scripts_2\NonMainChar.cs" />
-     <Compile Include="Assets\Scripts_2\Q_Spot_Coll_Script.cs" />
-     <Compile Include="Assets\Scripts_2\QueueScript1.cs" />
-     <Compile Include="Assets\Scripts_2\Syringe.cs" />
-     <Compile Include="Assets\Scripts_2\Tutorial_1.cs" />
+     <Compile Include="Assets\Scripts\Activate_MainChar.cs" />
+     <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\Drag_Item.cs" />
+     <Compile Include="Assets\Scripts\Item.cs" />
+     <Compile Include="Assets\Scripts\Item_Set.cs" />
+     <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\MainChar.cs" />
+     <Compile Include="Assets\Scripts\NonMainChar.cs" />
+     <Compile Include="Assets\Scripts\Q_Spot_Coll_Script.cs" />
+     <Compile Include="Assets\Scripts\QueueScript1.cs" />
+     <Compile Include="Assets\Scripts\Syringe.cs" />
+     <Compile Include="Assets\Scripts\Tutorial_1.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

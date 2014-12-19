@@ -2,13 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts_2/LevelManager.cs">
     <Files>
-      <File FileName="Assets/Scripts_2/MainChar.cs" Line="46" Column="5" />
+      <File FileName="Assets/Scripts_2/MainChar.cs" Line="44" Column="69" />
       <File FileName="Assets/Scripts_2/NonMainChar.cs" Line="34" Column="5" />
       <File FileName="Assets/Scripts_2/Item_Set.cs" Line="26" Column="1" />
       <File FileName="Assets/Scripts_2/QueueScript1.cs" Line="71" Column="1" />
-      <File FileName="Assets/Scripts_2/Character.cs" Line="95" Column="5" />
-      <File FileName="Assets/Scripts_2/Activate_MainChar.cs" Line="23" Column="26" />
-      <File FileName="Assets/Scripts_2/LevelManager.cs" Line="103" Column="63" />
+      <File FileName="Assets/Scripts_2/Character.cs" Line="117" Column="56" />
+      <File FileName="Assets/Scripts_2/Activate_MainChar.cs" Line="23" Column="33" />
+      <File FileName="Assets/Scripts_2/LevelManager.cs" Line="103" Column="43" />
       <File FileName="Assets/Scripts_2/Drag_Item.cs" Line="161" Column="63" />
       <File FileName="Assets/Scripts_2/Q_Spot_Coll_Script.cs" Line="4" Column="50" />
     </Files>

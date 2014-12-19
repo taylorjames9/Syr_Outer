@@ -54,7 +54,7 @@ public class MainChar : Character {
 	}
 	
 	void OnMouseDown(){
-		tapOnMeCounter++;
+		setTapOnMeCounter(1);
 		myQueueOBJ.SetActive (true);
 		if (tapOnMeCounter > 1) {
 			myArrow.SetActive (true);
@@ -66,7 +66,7 @@ public class MainChar : Character {
 			rotateArrow(levelManScript.charsInLevel[randomNumForThisLevel]);
 			levelManScript.setGameState(GAME_STATE.RED_ARROW_OUT); 
 			gameObject.tag="ActiveMain";
-		} else if (tapOnMeCounter > 3) {
+		} else if (tapOnMeCounter > 2) {
 			myArrow.SetActive (false);
 			tapOnMeCounter = 0;
 		}
@@ -109,5 +109,12 @@ public class MainChar : Character {
 	public Character getTargetUnderConsideration(){
 		return targetUnderConsideration;
 	}
+	public int getTapOnMeCounter(){
+		return tapOnMeCounter;
+	}
+	public void setTapOnMeCounter(int addTap){
+		tapOnMeCounter += addTap;
+	}
+
 
 }
