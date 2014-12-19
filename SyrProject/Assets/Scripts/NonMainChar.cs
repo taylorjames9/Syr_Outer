@@ -46,7 +46,7 @@ public class NonMainChar : Character {
 		}
 	}
 
-	void OnMouseDown(){
+	public bool OnMouseDown(){
 		if (levelManScript.getGameState() == GAME_STATE.NONE) {
 			myQueueOBJ.SetActive (true);
 		} else if (levelManScript.getGameState() == GAME_STATE.RED_ARROW_OUT) {
@@ -55,5 +55,6 @@ public class NonMainChar : Character {
 			activeMainPlayerScript.rotateArrow (this);
 			activeMainPlayerScript.setTargetUnderConsideration(this);
 		}
+		return true;
 	}
 }

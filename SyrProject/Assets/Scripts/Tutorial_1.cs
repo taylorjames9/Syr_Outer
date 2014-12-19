@@ -9,6 +9,8 @@ public class Tutorial_1 : MonoBehaviour
 		private int nTutState;
 		//public GameObject mainCharacterOBJ;
 		public MainChar mainPlayerScript;
+		public NonMainChar nonMain1;
+		public NonMainChar nonMain2;
 
 		void Update ()
 		{
@@ -55,13 +57,23 @@ public class Tutorial_1 : MonoBehaviour
 
 					break;
 				case 7:
+				//Tap to change target
 					openRelevantTutCloseOthers();
+//					if(nonMain1.OnMouseDown() || nonMain2.OnMouseDown()){
+//						increaseTutStateBy1(1);
+//					}
 					break;
 				case 8:
+				//tap tip of red arrow
 					openRelevantTutCloseOthers();
+					if(Activate_MainChar.tapRedArrowCounter > 0){
+						increaseTutStateBy1(1);
+					}
 					break;
 				case 9:
-					openRelevantTutCloseOthers();
+					for (int i=0; i< tutorialPanels.Count; i++) {
+							tutorialPanels [i].gameObject.SetActive (false);
+						}
 					break;
 
 				default:

@@ -9,6 +9,7 @@ public class Activate_MainChar : MonoBehaviour {
 
 	private GameObject levelManagerOBJ;
 	private LevelManager levelManScript;
+	public static int tapRedArrowCounter;
 
 	void Start(){
 		levelManagerOBJ = GameObject.Find("LevelManager_OBJ");
@@ -16,6 +17,7 @@ public class Activate_MainChar : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		tapRedArrowCounter++;
 		activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 		activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
 		//GameObject qObject = activeMainPlayerOBJ.
