@@ -19,6 +19,8 @@ public class Drag_Item : MonoBehaviour
 	//LevelManager levelManScript;
 	GameObject levelManOBJ;
 	LevelManager levelManScript;
+	//private int tapOnSyringeCounter;
+	public static int tapOnSyringeCounter;
 
 	void Start(){
 		startPosition = transform.position;
@@ -313,6 +315,8 @@ public class Drag_Item : MonoBehaviour
 		iAmBeingMoved = false;
 		if(touchingWhereIWantToBe){
 			transform.position = itemGoesToThisSpot;
+			//setTapOnSyringeCounter(1);
+			tapOnSyringeCounter++;
 		}
 		else{
 			QueueScript1 myQueueScript = GetComponentInParent<QueueScript1>();
@@ -329,5 +333,12 @@ public class Drag_Item : MonoBehaviour
 		else
 			touchingWhereIWantToBe = false;
 	}
+
+//	public int getTapOnSyringeCounter(){
+//		return tapOnSyringeCounter;
+//	}
+//	public void setTapOnSyringeCounter(int tapSyr){
+//		tapOnSyringeCounter += tapSyr;
+//	}
 
 }

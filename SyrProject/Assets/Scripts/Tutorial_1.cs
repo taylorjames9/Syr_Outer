@@ -48,7 +48,19 @@ public class Tutorial_1 : MonoBehaviour
 								tutorialPanels [i].gameObject.SetActive (false);
 							}
 						}
+						if(Drag_Item.tapOnSyringeCounter > 0){
+							increaseTutStateBy1(1);
+						}
+
 						break;
+				case 4:
+					tutorialPanels [nTutState].gameObject.SetActive (true);
+					for (int i=0; i< tutorialPanels.Count; i++) {
+						if (i != nTutState) {
+							tutorialPanels [i].gameObject.SetActive (false);
+						}
+					}
+					break;
 
 				default:
 
