@@ -76,6 +76,8 @@ public class LevelManager : MonoBehaviour {
 				continue;
 			}
 			else{
+				panelRectTransform.gameObject.SetActive(true);
+				howdIDo.text = "LEVEL STATUS: FAILED \n\nOBJECTIVE NOT COMPLETE";
 				return false;
 			}
 		}

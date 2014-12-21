@@ -101,8 +101,9 @@ public abstract class Character : MonoBehaviour {
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			//if the thing that I go hit with is not my color. 
-			Debug.Log("my charParamet color is "+ charParamet.myColor.ToString());
-			Debug.Log("my itemParamet color is "+item.paramet.itemColor.ToString());
+			Debug.Log ("I JUST GOT STUCK WITH A SYRINGE TO SET TARGET");
+			//Debug.Log("my charParamet color is "+ charParamet.myColor.ToString());
+			//Debug.Log("my itemParamet color is "+item.paramet.itemColor.ToString());
 			//if(item.paramet.itemColor != charParamet.myColor){
 			if (!item.paramet.itemColor.ToString().Equals(charParamet.myColor.ToString())){
 				setTarget(item.paramet.itemColor);
@@ -113,6 +114,7 @@ public abstract class Character : MonoBehaviour {
 	}
 	public void sicTarget(Transform sicTarget){
 		//setAttacking(true);
+		Debug.Log("INSIDE OF SIC TARGET");
 		switchAnim(anim, 1);
 		if(!arrived && myQueue_Script.myItemObjects.Count > 0){
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
@@ -171,6 +173,7 @@ public abstract class Character : MonoBehaviour {
 			}
 			//else if this is part of the chain reaction (after the main character's attack)
 			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){				arrived = true;
+				Debug.Log ("WE ARE CURRENTLY INSIDE TRIGGER");
 				myCurrTarget = null;
 				arrived = true;
 				walkBackToStartPosition(myStartPosition);
@@ -187,10 +190,10 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	public void walkBackToStartPosition(Vector2 startPosition){
-
-		while(!inStartPosition()){
+		this.transform.position = myStartPosition;
+		if(inStartPosition()){
 			switchAnim(anim, 0);
-			transform.position = Vector2.MoveTowards(this.transform.position, startPosition, 0.02f);
+			//transform.position = Vector2.MoveTowards(this.transform.position, startPosition, 0.02f);
 		}
 	}
 
