@@ -193,7 +193,6 @@ public abstract class Character : MonoBehaviour {
 		this.transform.position = myStartPosition;
 		if(inStartPosition()){
 			switchAnim(anim, 0);
-			//transform.position = Vector2.MoveTowards(this.transform.position, startPosition, 0.02f);
 		}
 	}
 

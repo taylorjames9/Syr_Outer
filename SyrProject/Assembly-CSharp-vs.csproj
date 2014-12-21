@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Activate_MainChar.cs" />
+     <Compile Include="Assets\Scripts\All_CharacterScript.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Drag_Item.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
