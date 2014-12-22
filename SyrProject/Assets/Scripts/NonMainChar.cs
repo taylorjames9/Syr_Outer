@@ -10,7 +10,7 @@ public class NonMainChar : Character {
 
 	public override void Start(){
 		base.Start();
-		switchAnim(anim, 0); 
+		//switchAnim(anim, 0); 
 	}
 
 	void Update(){
@@ -31,11 +31,12 @@ public class NonMainChar : Character {
 		case GAME_STATE.CHAIN_REACTION:
 			Debug.Log (this+" In start position = "+ inStartPosition());
 			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count >= 0){
+				//switchAnim(anim, 1);
 				sicTarget(myCurrTarget.transform);
 			}
 			if(iAmDead){
 				Debug.Log ("I am DEAD");
-				switchAnim(anim, 3);
+				//switchAnim(anim, 3);
 			}
 
 			break;

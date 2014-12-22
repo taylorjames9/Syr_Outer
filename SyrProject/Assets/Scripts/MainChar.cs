@@ -9,7 +9,6 @@ public class MainChar : Character {
 	private bool isConsideringTarget;
 	private Character targetUnderConsideration;
 	private bool isActingAsMain = true;
-	//public List<Character> allCharsInScene = new List<Character>();
 	private int randomNumForThisLevel;
 
 	public override void Start(){
