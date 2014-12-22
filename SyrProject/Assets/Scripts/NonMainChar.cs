@@ -10,6 +10,7 @@ public class NonMainChar : Character {
 
 	public override void Start(){
 		base.Start();
+		switchAnim(anim, 0); 
 	}
 
 	void Update(){

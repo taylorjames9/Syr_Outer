@@ -15,11 +15,9 @@ public class Drag_Item : MonoBehaviour
 	private bool iAmBeingMoved;
 	private bool removedFromOrigSpot;
 	private int positionICameFrom;
-	//public List<Transform> myQHolders = new List<Transform>();
-	//LevelManager levelManScript;
+
 	GameObject levelManOBJ;
 	LevelManager levelManScript;
-	//private int tapOnSyringeCounter;
 	public static int tapOnSyringeCounter;
 
 	void Start(){
@@ -94,7 +92,6 @@ public class Drag_Item : MonoBehaviour
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
 		}
 		else if(coll.gameObject.name == "Blue_Spot2"){
 			Debug.Log("TOUCHING Blue SPOT 2");
@@ -109,10 +106,6 @@ public class Drag_Item : MonoBehaviour
 			}
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
-			////////***
-			/// YOU MIGHT WANT TO PUT THIS NEXT LINE DOWN IN TRIGGEREXIT
-			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
-
 			
 		}
 		else if(coll.gameObject.name == "Blue_Spot3"){
@@ -133,9 +126,6 @@ public class Drag_Item : MonoBehaviour
 			}
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
-
-			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
-
 			
 		}
 		else if(coll.gameObject.name == "Green_Spot1"){
@@ -145,8 +135,6 @@ public class Drag_Item : MonoBehaviour
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			touchingWhereIWantToBe = true;
 			itemGoesToThisSpot = (Vector2) coll.transform.position;
-			//transform.parent.GetComponent<QueueScript1>().myItemObjects.RemoveAt(int.Parse(transform.tag));
-
 			
 		}
 		else if(coll.gameObject.name == "Green_Spot2"){
@@ -315,7 +303,6 @@ public class Drag_Item : MonoBehaviour
 		iAmBeingMoved = false;
 		if(touchingWhereIWantToBe){
 			transform.position = itemGoesToThisSpot;
-			//setTapOnSyringeCounter(1);
 			tapOnSyringeCounter++;
 		}
 		else{

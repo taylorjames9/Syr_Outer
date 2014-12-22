@@ -92,19 +92,11 @@ public abstract class Character : MonoBehaviour {
 			setDead(true);
 			switchAnim(anim, 3);
 			LevelManager.bDeathInLevel = true;
-//			if(levelManScript.checkGameOver()){
-//				Debug.Log ("INVOKING CHECK WIN");
-//				Invoke("levelManScript.checkWin", 4.0f);
-//			}
 
-			//arrived = false;
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			//if the thing that I go hit with is not my color. 
 			Debug.Log ("I JUST GOT STUCK WITH A SYRINGE TO SET TARGET");
-			//Debug.Log("my charParamet color is "+ charParamet.myColor.ToString());
-			//Debug.Log("my itemParamet color is "+item.paramet.itemColor.ToString());
-			//if(item.paramet.itemColor != charParamet.myColor){
 			if (!item.paramet.itemColor.ToString().Equals(charParamet.myColor.ToString())){
 				setTarget(item.paramet.itemColor);
 				arrived = false;
@@ -113,7 +105,6 @@ public abstract class Character : MonoBehaviour {
 		}
 	}
 	public void sicTarget(Transform sicTarget){
-		//setAttacking(true);
 		Debug.Log("INSIDE OF SIC TARGET");
 		switchAnim(anim, 1);
 		if(!arrived && myQueue_Script.myItemObjects.Count > 0){
@@ -153,41 +144,26 @@ public abstract class Character : MonoBehaviour {
 		anim0.SetInteger("MainInt", anim_state);
 	}
 	
-	public virtual void OnTriggerEnter2D(Collider2D  other){
-		//if I am the attacker
-		if (getAttacking()){
-			//if this is the main characters first attack
-			if( other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.MAINCHAR_ACTIVE ){
-				myCurrTarget = null;
-				arrived = true;
-				walkBackToStartPosition(myStartPosition);
-				switchAnim(anim, 2);
-				setAttacking(false); 
-				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
-				//removeUsedItem from queue
-				//rearrange queue
-				myQueue_Script.removeUsedObjectFromOwnerQueue(); 
-				myQueue_Script.displayNewQueueVisualFromOwnerQueueList();
-				levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
-				setLiability(false);
-			}
-			//else if this is part of the chain reaction (after the main character's attack)
-			else if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION){				arrived = true;
-				Debug.Log ("WE ARE CURRENTLY INSIDE TRIGGER");
-				myCurrTarget = null;
-				arrived = true;
-				walkBackToStartPosition(myStartPosition);
-				switchAnim(anim, 2);
-				setAttacking(false);
-				other.gameObject.GetComponent<Character>().reactToGetHit(myQueue_Script.myItemObjects[0]);
-				//removeUsedItem from queue
-				//rearrange queue
-				myQueue_Script.removeUsedObjectFromOwnerQueue(); 
-				myQueue_Script.displayNewQueueVisualFromOwnerQueueList();
-				setLiability(false);
-			}
+	public virtual void OnTriggerEnter2D (Collider2D  other)
+		{
+				//if I am the attacker
+				if (getAttacking ()) {
+						if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
+								arrived = true;
+								Debug.Log ("WE ARE CURRENTLY INSIDE TRIGGER");
+								myCurrTarget = null;
+								walkBackToStartPosition (myStartPosition);
+								switchAnim (anim, 2);
+								setAttacking (false);
+								other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
+								//removeUsedItem from queue
+								//rearrange queue
+								myQueue_Script.removeUsedObjectFromOwnerQueue (); 
+								myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
+								setLiability (false);
+						}
+				}
 		}
-	}
 
 	public void walkBackToStartPosition(Vector2 startPosition){
 		this.transform.position = myStartPosition;

@@ -38,9 +38,6 @@ public class MainChar : Character {
 			sicTarget (getTarget ().transform);
 			break;
 		case GAME_STATE.CHAIN_REACTION:
-
-			Debug.Log (this+" In start position = "+ inStartPosition());
-
 			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count >= 0){
 				Debug.Log ("I AM A MAIN CHARACTER AND I JUST GOT STUCK");
 				switchAnim(anim, 1);

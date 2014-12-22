@@ -17,10 +17,10 @@ public class Activate_MainChar : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		//this tappedRedArrowCounter is for the tutorial
 		tapRedArrowCounter++;
 		activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 		activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
-		//GameObject qObject = activeMainPlayerOBJ.
 		QueueScript1 qScript = activeMainPlayerOBJ.GetComponentInChildren<QueueScript1>();
 		if(qScript.myItemObjects.Count >0){
 			activeMainPlayerScript.setMainTarget (activeMainPlayerScript.getTargetUnderConsideration());
@@ -32,7 +32,7 @@ public class Activate_MainChar : MonoBehaviour {
 			foreach(Character chr in levelManScript.charsInLevel){
 				chr.myQueueOBJ.SetActive(false);
 			}*/
-			levelManScript.setGameState(GAME_STATE.MAINCHAR_ACTIVE);
+			levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
 		}
 	}
 

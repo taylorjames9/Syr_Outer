@@ -36,8 +36,6 @@ public class QueueScript1 : MonoBehaviour {
 			item.transform.renderer.enabled = false; 
 		}
 		displayNewQueueVisualFromOwnerQueueList ();
-		//Debug.Log ("My Item list " + myItemObjects);
-
 	}
 
 
