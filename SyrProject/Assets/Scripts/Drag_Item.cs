@@ -58,7 +58,7 @@ public class Drag_Item : MonoBehaviour
 				Debug.Log ("GOING INTO ORANGE SPT 2");
 				orangeQueueScript.myItemObjects.Insert(1, this.GetComponent<Item_Set>());
 				itemGoesToThisSpot = (Vector2) coll.transform.position;
-			} else {
+			} else if (orangeQueueScript.myItemObjects.Count == 0){
 				orangeQueueScript.myItemObjects.Insert(0, this.GetComponent<Item_Set>());
 				itemGoesToThisSpot = (Vector2) orangeQueueScript.myQSpots[0].transform.position;
 			}
@@ -175,108 +175,81 @@ public class Drag_Item : MonoBehaviour
 
 		itemGoesToThisSpot = (Vector2) startPosition;
 
-		if(coll.gameObject.name == "Orange_Spot1" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 0;
+		if(coll.gameObject.name == "Orange_Spot1"){
 			Debug.Log("Removing from ORANGE SPOT 1");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			orangeQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			//removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 		}
-		else if(coll.gameObject.name == "Orange_Spot2" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 1;
+		else if(coll.gameObject.name == "Orange_Spot2" ){
 			Debug.Log("Removing from ORANGE SPOT 2!!!!");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			orangeQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 		}
-		else if(coll.gameObject.name == "Orange_Spot3" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 2;
+		else if(coll.gameObject.name == "Orange_Spot3" ){
 			Debug.Log("Removing from ORANGE SPOT 3");
 			QueueScript1 orangeQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			orangeQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			orangeQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 			
 		}
-		else if(coll.gameObject.name == "Blue_Spot1" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 0;
+		else if(coll.gameObject.name == "Blue_Spot1" ){
 			Debug.Log("removing from Blue SPOT 1");
 			QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			blueQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 			
 		}
-		else if(coll.gameObject.name == "Blue_Spot2" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 1;
+		else if(coll.gameObject.name == "Blue_Spot2"){
 			Debug.Log("Removing from Blue SPOT 2");
 			QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			blueQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 			
 		}
-		else if(coll.gameObject.name == "Blue_Spot3" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 2;
+		else if(coll.gameObject.name == "Blue_Spot3" ){
 			Debug.Log("Removing From Blue SPOT 3");
 			QueueScript1 blueQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			blueQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			blueQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 			
 		}
-		else if(coll.gameObject.name == "Green_Spot1" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 0;
+		else if(coll.gameObject.name == "Green_Spot1" ){
 			Debug.Log("Removing from green SPOT 1");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			greenQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 			
 		}
-		else if(coll.gameObject.name == "Green_Spot2" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 1;
+		else if(coll.gameObject.name == "Green_Spot2"){
 			Debug.Log("Removing from green SPOT 2");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			greenQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 		}
-		else if(coll.gameObject.name == "Green_Spot3" && !removedFromOrigSpot){
-			removedFromOrigSpot = true;
-			positionICameFrom = 2;
+		else if(coll.gameObject.name == "Green_Spot3"){
 			Debug.Log("Removing from green SPOT 3");
 			QueueScript1 greenQueueScript = coll.GetComponentInParent<QueueScript1>(); 
 			greenQueueScript.myItemObjects.Remove((Item_Set) this.GetComponent<Item_Set>());
 			greenQueueScript.displayNewQueueVisualFromOwnerQueueList();
 			itemGoesToThisSpot = (Vector2) startPosition;
-			removedFromOrigSpot = false;
 			touchingWhereIWantToBe = false;
 		}
 	}
@@ -284,8 +257,11 @@ public class Drag_Item : MonoBehaviour
 	
 	void OnMouseDown()
 	{
+		QueueScript1 myQueueScript = GetComponentInParent<QueueScript1>();
 		screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+		positionICameFrom = myQueueScript.myItemObjects.IndexOf((Item_Set) this.GetComponent<Item_Set>());
+
 	}
 	
 	void OnMouseDrag()
@@ -297,10 +273,10 @@ public class Drag_Item : MonoBehaviour
 	}
 
 	void OnMouseUp(){
-		removedFromOrigSpot = false;
 		iAmBeingMoved = false;
 		if(touchingWhereIWantToBe){
 			transform.position = itemGoesToThisSpot;
+			//for Tutorial
 			tapOnSyringeCounter++;
 		}
 		else{
