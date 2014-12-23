@@ -83,16 +83,13 @@ public abstract class Character : MonoBehaviour {
 	public void hitTarget(Character chr, Item Item_Set){ }
 	public void dropItem(){
 		myQueue_Script.myItemObjects.RemoveAt(0);
-	
 	}
 	public void reactToGetHit (Item_Set item){ 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
-			//iAmDead = true;
 			setDead(true);
 			switchAnim(anim, 3);
 			LevelManager.bDeathInLevel = true;
-
 		} 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			//if the thing that I go hit with is not my color. 
@@ -111,7 +108,6 @@ public abstract class Character : MonoBehaviour {
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 		}
 		else if(arrived && getAttacking()){
-				//switchAnim(anim, 2);
 
 		}
 	}  //this can be walk to or aim
