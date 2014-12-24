@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 9616f33b98250464aa42ba91a888c0b4
+guid: f168c17b82a814942bc573673d58ac06
 TextureImporter:
   fileIDToRecycleName:
     21300000: deadAnimSheet_Purple_0
     21300002: deadAnimSheet_Purple_1
     21300004: deadAnimSheet_Purple_2
     21300006: deadAnimSheet_Purple_3
+    21300008: deadAnimSheet_Purple_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,39 +52,49 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 128
-        height: 238
+        y: 3
+        width: 125
+        height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: deadAnimSheet_Purple_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 238
+        x: 125
+        y: 3
+        width: 125
+        height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: deadAnimSheet_Purple_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 238
+        x: 250
+        y: 3
+        width: 125
+        height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: deadAnimSheet_Purple_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 238
+        x: 375
+        y: 3
+        width: 125
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: deadAnimSheet_Purple_4
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 3
+        width: 125
+        height: 235
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
