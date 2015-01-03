@@ -32,10 +32,12 @@ public class QueueScript1 : MonoBehaviour {
 		this.gameObject.SetActive (false);
 
 		myOwner = transform.parent.gameObject;
-		foreach(Item_Set item in myItemObjects){
-			item.transform.renderer.enabled = false; 
+		if(myItemObjects.Count >0){
+			foreach(Item_Set item in myItemObjects){
+				item.transform.renderer.enabled = false; 
+			}
+			displayNewQueueVisualFromOwnerQueueList ();
 		}
-		displayNewQueueVisualFromOwnerQueueList ();
 	}
 
 
