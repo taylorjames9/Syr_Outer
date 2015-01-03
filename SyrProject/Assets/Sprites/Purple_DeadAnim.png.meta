@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: f168c17b82a814942bc573673d58ac06
+guid: b059cc6f56313428380ad098277582c8
 TextureImporter:
   fileIDToRecycleName:
-    21300000: deadAnimSheet_Purple_0
-    21300002: deadAnimSheet_Purple_1
-    21300004: deadAnimSheet_Purple_2
-    21300006: deadAnimSheet_Purple_3
-    21300008: deadAnimSheet_Purple_4
+    21300000: Purple_DeadAnim_0
+    21300002: Purple_DeadAnim_1
+    21300004: Purple_DeadAnim_2
+    21300006: Purple_DeadAnim_3
+    21300008: Purple_DeadAnim_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -48,53 +48,53 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: deadAnimSheet_Purple_0
+    - name: Purple_DeadAnim_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 125
-        height: 235
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: deadAnimSheet_Purple_1
+    - name: Purple_DeadAnim_1
       rect:
         serializedVersion: 2
-        x: 125
-        y: 3
-        width: 125
-        height: 235
+        x: 135
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: deadAnimSheet_Purple_2
+    - name: Purple_DeadAnim_2
       rect:
         serializedVersion: 2
-        x: 250
-        y: 3
-        width: 125
-        height: 235
+        x: 270
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: deadAnimSheet_Purple_3
+    - name: Purple_DeadAnim_3
       rect:
         serializedVersion: 2
-        x: 375
-        y: 3
-        width: 125
-        height: 235
+        x: 405
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: deadAnimSheet_Purple_4
+    - name: Purple_DeadAnim_4
       rect:
         serializedVersion: 2
-        x: 500
-        y: 3
-        width: 125
-        height: 235
+        x: 540
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

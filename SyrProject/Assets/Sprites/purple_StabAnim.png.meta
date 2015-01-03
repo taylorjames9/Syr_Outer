@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 2633e2d9561584e83a47b50955bb5355
+guid: 7d9713ad4f97848dd97e7b6f9a5c29e0
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Stand_Idle_Purple_0
-    21300002: Stand_Idle_Purple_1
-    21300004: Stand_Idle_Purple_2
-    21300006: Stand_Idle_Purple_3
+    21300000: purple_StabAnim_0
+    21300002: purple_StabAnim_1
+    21300004: purple_StabAnim_2
+    21300006: purple_StabAnim_3
+    21300008: purple_StabAnim_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -47,43 +48,53 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Stand_Idle_Purple_0
+    - name: purple_StabAnim_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 128
-        height: 238
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Stand_Idle_Purple_1
+    - name: purple_StabAnim_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 238
+        x: 135
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Stand_Idle_Purple_2
+    - name: purple_StabAnim_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 238
+        x: 270
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Stand_Idle_Purple_3
+    - name: purple_StabAnim_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 238
+        x: 405
+        y: 4
+        width: 135
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: purple_StabAnim_4
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

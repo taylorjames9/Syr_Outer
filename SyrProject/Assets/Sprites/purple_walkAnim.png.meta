@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: c84f2405f293d45729c14d4d29925651
+guid: a45f38350d0a94951a39ace6cabc1b29
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stabAnimSheet_Purple_0
-    21300002: stabAnimSheet_Purple_1
-    21300004: stabAnimSheet_Purple_2
-    21300006: stabAnimSheet_Purple_3
+    21300000: purple_walkAnim_0
+    21300002: purple_walkAnim_1
+    21300004: purple_walkAnim_2
+    21300006: purple_walkAnim_3
+    21300008: purple_walkAnim_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -47,43 +48,53 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: stabAnimSheet_Purple_0
+    - name: purple_walkAnim_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 128
-        height: 238
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: stabAnimSheet_Purple_1
+    - name: purple_walkAnim_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 238
+        x: 135
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: stabAnimSheet_Purple_2
+    - name: purple_walkAnim_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 238
+        x: 270
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: stabAnimSheet_Purple_3
+    - name: purple_walkAnim_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 238
+        x: 405
+        y: 4
+        width: 135
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: purple_walkAnim_4
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 4
+        width: 135
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
