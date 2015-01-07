@@ -81,11 +81,16 @@ public abstract class Character : MonoBehaviour {
 			}
 		}
 	}
+
+	public void setTarget(Character chara){ 
+		myCurrTarget = chara;
+	}
+
 	public void hitTarget(Character chr, Item Item_Set){ }
 	public void dropItem(){
 		myQueue_Script.myItemObjects.RemoveAt(0);
 	}
-	public void reactToGetHit (Item_Set item){ 
+	public IEnumerator reactToGetHit (Item_Set item){ 
 
 		if(stabBackON){
 			StartCoroutine(stabBack(0.0f)); 
@@ -106,6 +111,7 @@ public abstract class Character : MonoBehaviour {
 				setAttacking(true);
 			}
 		}
+		yield return new WaitForSeconds(0.0f);
 	}
 	public void sicTarget(Transform sicTarget){
 		Debug.Log("INSIDE OF SIC TARGET");
@@ -152,20 +158,23 @@ public abstract class Character : MonoBehaviour {
 				if (getAttacking ()) {
 						if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
 								arrived = true;
-								Debug.Log ("WE ARE CURRENTLY INSIDE TRIGGER");
+						Debug.Log ("get stab back status of other: "+other.gameObject.GetComponent<Character> ().getStabBack());
 								myCurrTarget = null;
 								
 								switchAnim (anim, 2);
 								setAttacking (false);
 								other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
+								if(other.gameObject.GetComponent<Character> ().getStabBack()){
+								Debug.Log ("Other stab back is running.");
+									other.gameObject.GetComponent<Character> ().setAttacking(true);
+									other.gameObject.GetComponent<Character> ().setTarget((Character)this);
+									StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0])); 
+								}
 								//removeUsedItem from queue
 								//rearrange queue
 								myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 								myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 								setLiability (false);
-								//wait for 2 seconds (for stab back) then go back to start position
-								//Invoke("walkBackToStartPosition (myStartPosition)", 0.0f);
-								//walkBackToStartPosition (myStartPosition);
 								StartCoroutine(walkBackToStartPosition (myStartPosition, 1.0f));
 				               }
 				}
@@ -200,7 +209,7 @@ public abstract class Character : MonoBehaviour {
 
 	}
 
-	public bool getStabBack(bool tf){
+	public bool getStabBack(){
 		return stabBackON;
 	}
 
