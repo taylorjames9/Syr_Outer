@@ -33,6 +33,7 @@ public abstract class Character : MonoBehaviour {
 	protected bool arrived;
 	protected bool iAmDead; 
 	protected bool potentialLiability;
+	protected bool stabBackON;
 
 	protected Animator anim;
 
@@ -85,6 +86,11 @@ public abstract class Character : MonoBehaviour {
 		myQueue_Script.myItemObjects.RemoveAt(0);
 	}
 	public void reactToGetHit (Item_Set item){ 
+
+		if(stabBackON){
+			StartCoroutine(stabBack(0.0f)); 
+		}
+
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
 			setDead(true);
@@ -148,7 +154,7 @@ public abstract class Character : MonoBehaviour {
 								arrived = true;
 								Debug.Log ("WE ARE CURRENTLY INSIDE TRIGGER");
 								myCurrTarget = null;
-								walkBackToStartPosition (myStartPosition);
+								
 								switchAnim (anim, 2);
 								setAttacking (false);
 								other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
@@ -157,11 +163,16 @@ public abstract class Character : MonoBehaviour {
 								myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 								myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 								setLiability (false);
-						}
+								//wait for 2 seconds (for stab back) then go back to start position
+								//Invoke("walkBackToStartPosition (myStartPosition)", 0.0f);
+								//walkBackToStartPosition (myStartPosition);
+								StartCoroutine(walkBackToStartPosition (myStartPosition, 1.0f));
+				               }
 				}
 		}
 
-	public void walkBackToStartPosition(Vector2 startPosition){
+	IEnumerator walkBackToStartPosition(Vector2 startPosition, float delay){
+		yield return new WaitForSeconds(delay);
 		this.transform.position = myStartPosition;
 		if(inStartPosition()){
 			switchAnim(anim, 0);
@@ -176,6 +187,26 @@ public abstract class Character : MonoBehaviour {
 		}
 		else
 			return false; 
+	}
+
+	public bool setStabBack(bool tf){
+		if(tf){
+			stabBackON = true;
+			return true;
+		}
+		else{
+			return false;
+		}
+
+	}
+
+	public bool getStabBack(bool tf){
+		return stabBackON;
+	}
+
+	IEnumerator stabBack(float stabDelay){
+		switchAnim (anim, 2);
+		yield return new WaitForSeconds(stabDelay);
 	}
 
 

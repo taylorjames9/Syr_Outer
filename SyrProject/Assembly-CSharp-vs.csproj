@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\NonMainChar.cs" />
      <Compile Include="Assets\Scripts\Q_Spot_Coll_Script.cs" />
      <Compile Include="Assets\Scripts\QueueScript1.cs" />
+     <Compile Include="Assets\Scripts\StabBack_Script.cs" />
      <Compile Include="Assets\Scripts\Syringe.cs" />
      <Compile Include="Assets\Scripts\Tutorial_1.cs" />
  <Reference Include="UnityEngine.UI">
