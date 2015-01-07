@@ -165,20 +165,33 @@ public abstract class Character : MonoBehaviour {
 								setAttacking (false);
 								other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
 								if(other.gameObject.GetComponent<Character> ().getStabBack()){
-								Debug.Log ("Other stab back is running.");
+//									Debug.Log ("Other stab back is running.");
 									other.gameObject.GetComponent<Character> ().setAttacking(true);
 									other.gameObject.GetComponent<Character> ().setTarget((Character)this);
-									StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0])); 
+//									StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0])); 
 								}
 								//removeUsedItem from queue
 								//rearrange queue
 								myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 								myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 								setLiability (false);
-								StartCoroutine(walkBackToStartPosition (myStartPosition, 1.0f));
+								StartCoroutine(walkBackToStartPosition (myStartPosition, 2.0f));
 				               }
 				}
 		}
+
+	public void OnTriggerStay2D (Collider2D  other){
+		if(getAttacking()){
+			if(getStabBack()){
+				Debug.Log ("Trigger Stay is running.");
+				//other.gameObject.GetComponent<Character> ().setAttacking(true);
+				//other.gameObject.GetComponent<Character> ().setTarget((Character)this);
+				StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0]));
+				setAttacking(false);
+				setAttacking(false);
+			}
+		}
+	}
 
 	IEnumerator walkBackToStartPosition(Vector2 startPosition, float delay){
 		yield return new WaitForSeconds(delay);
@@ -204,6 +217,7 @@ public abstract class Character : MonoBehaviour {
 			return true;
 		}
 		else{
+			stabBackON = false;
 			return false;
 		}
 
@@ -217,6 +231,4 @@ public abstract class Character : MonoBehaviour {
 		switchAnim (anim, 2);
 		yield return new WaitForSeconds(stabDelay);
 	}
-
-
 }
