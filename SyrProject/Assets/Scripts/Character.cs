@@ -90,13 +90,15 @@ public abstract class Character : MonoBehaviour {
 	public void dropItem(){
 		myQueue_Script.myItemObjects.RemoveAt(0);
 	}
-	public IEnumerator reactToGetHit (Item_Set item){ 
 
+	IEnumerator reactToGetHit (Collider2D origStabber, Item_Set item){ 
+
+		Debug.Log ("INNNNside of react to get hit");
 		if(getStabBack()){
-			StartCoroutine(stabBack(0.0f)); 
+			StartCoroutine(stabBack(origStabber, 0.0f)); 
 		}
 
-		else if(!stabBackON && item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
+		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Victim drops dead");
 			setDead(true);
 			switchAnim(anim, 3);
@@ -163,11 +165,11 @@ public abstract class Character : MonoBehaviour {
 								//switchAnim (anim, 2);
 								//setAttacking (false);
 								//other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
-								if(other.gameObject.GetComponent<Character> ().getStabBack()){
-////									Debug.Log ("Other stab back is running.");
-									StartCoroutine(stabBack(other, 0.0f);
-////									StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0])); 
-								}
+//								if(other.gameObject.GetComponent<Character> ().getStabBack()){
+//////									Debug.Log ("Other stab back is running.");
+//									StartCoroutine(stabBack(other, 0.0f));
+//////									StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0])); 
+//								}
 								//removeUsedItem from queue
 								//rearrange queue
 //								myQueue_Script.removeUsedObjectFromOwnerQueue (); 
@@ -192,13 +194,16 @@ public abstract class Character : MonoBehaviour {
 //	}
 
 	IEnumerator stabTarget(Collider2D  other){
+		yield return new WaitForSeconds(0.0f);
+		Debug.Log("TRYING TO STAB THIS F'ING TARGET");
 		switchAnim (anim, 2);
 		myCurrTarget = null;
 		setAttacking (false);
-		other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
+		StartCoroutine(other.gameObject.GetComponent<Character> ().reactToGetHit (this.gameObject.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
+		Debug.Log("TRYING TO STAB THIS F'ING TARGET 222");
 	}
 
 	IEnumerator walkBackToStartPosition(Vector2 startPosition, float delay){
@@ -235,17 +240,18 @@ public abstract class Character : MonoBehaviour {
 		return stabBackON;
 	}
 
-	IEnumerator stabBack(Collider2D other, float stabBackDelay){
+	IEnumerator stabBack(Collider2D origStabber, float stabBackDelay){
+		Debug.Log ("Stabbed BACK");
 		switchAnim (anim, 2);
 		myCurrTarget = null;
 		setAttacking (false);
-		other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
+		origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]);
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
 		setStabBack(false);
 		this.setAttacking(true);
-		this.setTarget((Character)other.gameObject.GetComponent<Character> ());
-		yield return new WaitForSeconds(stabDelay);
+		this.setTarget((Character)origStabber.gameObject.GetComponent<Character> ());
+		yield return new WaitForSeconds(stabBackDelay);
 	}
 }
