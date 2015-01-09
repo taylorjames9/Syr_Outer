@@ -95,7 +95,9 @@ public abstract class Character : MonoBehaviour {
 
 		Debug.Log ("INNNNside of react to get hit");
 		if(getStabBack()){
-			StartCoroutine(stabBack(origStabber, 0.0f)); 
+			Debug.Log ("Get Stab back is portion of reactToGetHIt");
+			StartCoroutine(stabBack(origStabber, 0.0f));
+			yield break;
 		}
 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
@@ -156,42 +158,15 @@ public abstract class Character : MonoBehaviour {
 	
 	public virtual void OnTriggerEnter2D (Collider2D  other)
 		{
-				//if I am the attacker
-				if (getAttacking ()) {
-						if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
-								arrived = true;
-								StartCoroutine(stabTarget(other));
-								//myCurrTarget = null;
-								//switchAnim (anim, 2);
-								//setAttacking (false);
-								//other.gameObject.GetComponent<Character> ().reactToGetHit (myQueue_Script.myItemObjects [0]);
-//								if(other.gameObject.GetComponent<Character> ().getStabBack()){
-//////									Debug.Log ("Other stab back is running.");
-//									StartCoroutine(stabBack(other, 0.0f));
-//////									StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0])); 
-//								}
-								//removeUsedItem from queue
-								//rearrange queue
-//								myQueue_Script.removeUsedObjectFromOwnerQueue (); 
-//								myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
-								//setLiability (false);
-								StartCoroutine(walkBackToStartPosition (myStartPosition, 2.0f));
-				        }
+			//if I am the attacker
+			if (getAttacking ()) {
+				if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
+						arrived = true;
+						StartCoroutine (stabTarget (other));
+						StartCoroutine (walkBackToStartPosition (myStartPosition, 2.0f));
 				}
+			}
 		}
-
-//	public void OnTriggerStay2D (Collider2D  other){
-//		if(getAttacking()){
-//			if(getStabBack()){
-//				Debug.Log ("Trigger Stay is running.");
-//				//other.gameObject.GetComponent<Character> ().setAttacking(true);
-//				//other.gameObject.GetComponent<Character> ().setTarget((Character)this);
-//				StartCoroutine(reactToGetHit(other.gameObject.GetComponent<Character> ().myQueue_Script.myItemObjects [0]));
-//				setAttacking(false);
-//				setAttacking(false);
-//			}
-//		}
-//	}
 
 	IEnumerator stabTarget(Collider2D  other){
 		yield return new WaitForSeconds(0.0f);
@@ -249,9 +224,9 @@ public abstract class Character : MonoBehaviour {
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
-		setStabBack(false);
-		this.setAttacking(true);
-		this.setTarget((Character)origStabber.gameObject.GetComponent<Character> ());
+		//setStabBack(false);
+		//origStabber.setAttacking(true);
+		//origStabber.setTarget((Character)gameObject.GetComponent<Character> ());
 		yield return new WaitForSeconds(stabBackDelay);
 	}
 }
