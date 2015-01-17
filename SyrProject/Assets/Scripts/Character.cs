@@ -93,10 +93,25 @@ public abstract class Character : MonoBehaviour {
 
 	IEnumerator reactToGetHit (Collider2D origStabber, Item_Set item){ 
 
-		Debug.Log ("INNNNside of react to get hit");
+		Debug.Log ("INside of react to get hit");
 		if(getStabBack()){
-			Debug.Log ("Get Stab back is portion of reactToGetHIt");
+			Debug.Log ("WE ARE IN A TRUE STAB BACK");
 			StartCoroutine(stabBack(origStabber, 0.0f));
+			if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
+				Debug.Log ("Victim drops dead");
+				setDead(true);
+				switchAnim(anim, 3);
+				LevelManager.bDeathInLevel = true;
+			} 
+//			else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
+//				//if the thing that I go hit with is not my color. 
+//				Debug.Log ("I JUST GOT STUCK WITH A SYRINGE TO SET TARGET");
+//				if (!item.paramet.itemColor.ToString().Equals(charParamet.myColor.ToString())){
+//					setTarget(item.paramet.itemColor);
+//					arrived = false;
+//					setAttacking(true);
+//				}
+//			}
 			yield break;
 		}
 
@@ -220,9 +235,12 @@ public abstract class Character : MonoBehaviour {
 		switchAnim (anim, 2);
 		myCurrTarget = null;
 		setAttacking (false);
-		origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]);
+		//origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]);
+		StartCoroutine(origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
+
+
 		setLiability (false);
 		//setStabBack(false);
 		//origStabber.setAttacking(true);
