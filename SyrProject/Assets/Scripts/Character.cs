@@ -103,7 +103,7 @@ public abstract class Character : MonoBehaviour {
 				switchAnim(anim, 3);
 				LevelManager.bDeathInLevel = true;
 			} 
-			StartCoroutine(stabBack(origStabber, 2.0f));
+			StartCoroutine(stabBack(origStabber, 1.5f));
 //			else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 //				//if the thing that I go hit with is not my color. 
 //				Debug.Log ("I JUST GOT STUCK WITH A SYRINGE TO SET TARGET");
