@@ -96,13 +96,14 @@ public abstract class Character : MonoBehaviour {
 		Debug.Log ("INside of react to get hit");
 		if(getStabBack()){
 			Debug.Log ("WE ARE IN A TRUE STAB BACK");
-			StartCoroutine(stabBack(origStabber, 0.0f));
+
 			if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
-				Debug.Log ("Victim drops dead");
+				//Debug.Log ("HE who has stab back on SHOULD be dropping dead");
 				setDead(true);
 				switchAnim(anim, 3);
 				LevelManager.bDeathInLevel = true;
 			} 
+			StartCoroutine(stabBack(origStabber, 2.0f));
 //			else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 //				//if the thing that I go hit with is not my color. 
 //				Debug.Log ("I JUST GOT STUCK WITH A SYRINGE TO SET TARGET");
@@ -112,14 +113,15 @@ public abstract class Character : MonoBehaviour {
 //					setAttacking(true);
 //				}
 //			}
-			yield break;
+			yield return new WaitForSeconds(0.0f);
 		}
 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
-			Debug.Log ("Victim drops dead");
+			Debug.Log ("Person who got BACK stabbed droppps dead.");
 			setDead(true);
 			switchAnim(anim, 3);
 			LevelManager.bDeathInLevel = true;
+			yield return new WaitForSeconds(0.0f);
 		} 
 		else if(!stabBackON && item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 			//if the thing that I go hit with is not my color. 
@@ -134,8 +136,8 @@ public abstract class Character : MonoBehaviour {
 	}
 	public void sicTarget(Transform sicTarget){
 		Debug.Log("INSIDE OF SIC TARGET");
-		switchAnim(anim, 1);
 		if(!arrived && myQueue_Script.myItemObjects.Count > 0){
+			switchAnim(anim, 1);
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 		}
 		else if(arrived && getAttacking()){
@@ -178,13 +180,24 @@ public abstract class Character : MonoBehaviour {
 				if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
 						arrived = true;
 						StartCoroutine (stabTarget (other));
-						StartCoroutine (walkBackToStartPosition (myStartPosition, 2.0f));
+						Debug.Log("iamDead = "+iAmDead);
+						if(!iAmDead){
+							StartCoroutine (walkBackToStartPosition (myStartPosition, 1.0f));
+						}
+						
+						else if(iAmDead){
+							Debug.Log ("INSIDE OF IAMDEAD IN TRIGGERENTER");
+							switchAnim(anim, 0);
+							//switchAnim(anim, 3);
+						}
+						myCurrTarget = null;
+				//switchAnim (anim, );
 				}
 			}
 		}
 
 	IEnumerator stabTarget(Collider2D  other){
-		yield return new WaitForSeconds(0.0f);
+
 		Debug.Log("TRYING TO STAB THIS F'ING TARGET");
 		switchAnim (anim, 2);
 		myCurrTarget = null;
@@ -194,6 +207,7 @@ public abstract class Character : MonoBehaviour {
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
 		Debug.Log("TRYING TO STAB THIS F'ING TARGET 222");
+		yield return new WaitForSeconds(0.0f);
 	}
 
 	IEnumerator walkBackToStartPosition(Vector2 startPosition, float delay){
@@ -223,7 +237,6 @@ public abstract class Character : MonoBehaviour {
 			stabBackON = false;
 			return false;
 		}
-
 	}
 
 	public bool getStabBack(){
@@ -231,20 +244,15 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	IEnumerator stabBack(Collider2D origStabber, float stabBackDelay){
-		Debug.Log ("Stabbed BACK");
+		yield return new WaitForSeconds(stabBackDelay);
+		Debug.Log ("We are inside of stab back function.");
 		switchAnim (anim, 2);
-		myCurrTarget = null;
 		setAttacking (false);
-		//origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]);
 		StartCoroutine(origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
-
-
 		setLiability (false);
-		//setStabBack(false);
-		//origStabber.setAttacking(true);
-		//origStabber.setTarget((Character)gameObject.GetComponent<Character> ());
+		myCurrTarget = null;
 		yield return new WaitForSeconds(stabBackDelay);
 	}
 }
