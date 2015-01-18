@@ -37,7 +37,7 @@ public class MainChar : Character {
 			sicTarget (getTarget ().transform);
 			break;
 		case GAME_STATE.CHAIN_REACTION:
-			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count >= 0){
+			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count > 0){
 				switchAnim(anim, 1);
 				sicTarget(myCurrTarget.transform);
 			}

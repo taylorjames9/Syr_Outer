@@ -29,7 +29,7 @@ public class NonMainChar : Character {
 			break;
 		case GAME_STATE.CHAIN_REACTION:
 			Debug.Log (this+" In start position = "+ inStartPosition());
-			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count >= 0){
+			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count > 0){
 				sicTarget(myCurrTarget.transform);
 			}
 			if(iAmDead){
