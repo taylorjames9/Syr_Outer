@@ -254,5 +254,6 @@ public abstract class Character : MonoBehaviour {
 		setLiability (false);
 		myCurrTarget = null;
 		yield return new WaitForSeconds(stabBackDelay);
+		switchAnim (anim, 0);
 	}
 }
