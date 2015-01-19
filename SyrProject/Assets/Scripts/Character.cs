@@ -223,9 +223,23 @@ public abstract class Character : MonoBehaviour {
 		float dist = Vector3.Distance(transform.position, myStartPosition);
 		if(dist <= 0.1){
 			return true;
+			if(allCharactersAreStationaryCheck()){
+				Debug.Log("SHOULD BE BACK TO LEVEL START STATE");
+				levelManScript.setGameState(GAME_STATE.LEVEL_START);
+			}
 		}
 		else
 			return false; 
+	}
+
+	public bool allCharactersAreStationaryCheck(){
+		List<Character> allCharsInLevel = levelManScript.charsInLevel;
+		foreach(Character character in allCharsInLevel){
+			if(character.myCurrTarget != null){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public bool setStabBack(bool tf){
