@@ -99,9 +99,9 @@ public abstract class Character : MonoBehaviour {
 		yield return new WaitForSeconds(0.0f);
 		if(getStabBack()){
 			Debug.Log ("WE ARE IN A TRUE STAB BACK");
-			yield return new WaitForSeconds(0.0f);
+			yield return new WaitForSeconds(1.0f);
 			StartCoroutine(stabBack(origStabber, 0.0f));
-			yield return new WaitForSeconds(0.0f);
+			yield return new WaitForSeconds(1.0f);
 			if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 				setDead(true);
 				switchAnim(anim, 3);
@@ -110,7 +110,7 @@ public abstract class Character : MonoBehaviour {
 
 			yield return new WaitForSeconds(0.0f);
 		}
-		yield return new WaitForSeconds(0.0f);
+		yield return new WaitForSeconds(1.0f);
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Person who got BACK stabbed droppps dead.");
 			setDead(true);
@@ -218,28 +218,28 @@ public abstract class Character : MonoBehaviour {
 						yield return new WaitForSeconds(1.0f);
 						StartCoroutine (stabTarget (other));
 						if(other.gameObject.GetComponent<Character>().getStabBack()){
-							yield return new WaitForSeconds(2.0f);
+							yield return new WaitForSeconds(2.75f);
 							StartCoroutine (walkBackToStartPosition (myStartPosition, 0.0f));
 						}
-						
-						else{
-							
+						else if(!other.gameObject.GetComponent<Character>().getStabBack()){
+							yield return new WaitForSeconds(1.5f);
+							StartCoroutine (walkBackToStartPosition (myStartPosition, 0.0f));
 						}
 				}
 			}
 		}
 
 	IEnumerator stabTarget(Collider2D  other){
-		//yield return new WaitForSeconds(2.0f);
-		//Debug.Log("TRYING TO STAB THIS F'ING TARGET");
 		switchAnim (anim, 2);
 		myCurrTarget = null;
 		setAttacking (false);
+		yield return new WaitForSeconds(1.0f);
 		StartCoroutine(other.gameObject.GetComponent<Character> ().reactToGetHit (this.gameObject.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
-		//Debug.Log("TRYING TO STAB THIS F'ING TARGET 222");
+		yield return new WaitForSeconds(0.5f);
+		switchAnim (anim, 0);
 		yield return new WaitForSeconds(0.0f);
 	}
 
@@ -291,16 +291,17 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	IEnumerator stabBack(Collider2D origStabber, float stabBackDelay){
-		yield return new WaitForSeconds(stabBackDelay);
 		Debug.Log ("We are inside of stab back function.");
 		switchAnim (anim, 2);
+		myCurrTarget = null;
 		setAttacking (false);
+		yield return new WaitForSeconds(1.0f);
 		StartCoroutine(origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
-		myCurrTarget = null;
-		yield return new WaitForSeconds(stabBackDelay);
+		yield return new WaitForSeconds(0.5f);
 		switchAnim (anim, 0);
+		yield return new WaitForSeconds(0.0f);
 	}
 }
