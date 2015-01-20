@@ -34,12 +34,23 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
-			sicTarget (getTarget ().transform);
+			StartCoroutine(sicTarget (getTarget ().transform, 0.0f));
 			break;
 		case GAME_STATE.CHAIN_REACTION:
 			if(myCurrTarget != null && myQueue_Script.myItemObjects.Count > 0){
-				switchAnim(anim, 1);
-				sicTarget(myCurrTarget.transform);
+				//if(!getStartedWalking()){
+				if(getWalking()){
+					//setWalking(true);
+					Debug.Log ("Still calling sic Target function from chain reaciton STATE");
+					StartCoroutine(sicTarget(myCurrTarget.transform, 0.0f));
+					//setStartedWalking(true);
+				}
+			else if(!getWalking()){
+					Debug.Log ("STOP WALKING!");
+					switchAnim(anim, 0);
+					setWalking(false);
+					StopCoroutine(sicTarget(myCurrTarget.transform, 0.0f));
+				}
 			}
 			break;
 		case GAME_STATE.LEVEL_END:

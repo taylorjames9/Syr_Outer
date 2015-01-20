@@ -34,6 +34,8 @@ public abstract class Character : MonoBehaviour {
 	protected bool iAmDead; 
 	protected bool potentialLiability;
 	protected bool stabBackON;
+	protected bool walking;
+	//protected bool startedWalking;
 
 	protected Animator anim;
 
@@ -94,28 +96,21 @@ public abstract class Character : MonoBehaviour {
 	IEnumerator reactToGetHit (Collider2D origStabber, Item_Set item){ 
 
 		Debug.Log ("INside of react to get hit");
+		yield return new WaitForSeconds(0.0f);
 		if(getStabBack()){
 			Debug.Log ("WE ARE IN A TRUE STAB BACK");
-
+			yield return new WaitForSeconds(0.0f);
+			StartCoroutine(stabBack(origStabber, 0.0f));
+			yield return new WaitForSeconds(0.0f);
 			if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
-				//Debug.Log ("HE who has stab back on SHOULD be dropping dead");
 				setDead(true);
 				switchAnim(anim, 3);
 				LevelManager.bDeathInLevel = true;
 			} 
-			StartCoroutine(stabBack(origStabber, 1.5f));
-//			else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
-//				//if the thing that I go hit with is not my color. 
-//				Debug.Log ("I JUST GOT STUCK WITH A SYRINGE TO SET TARGET");
-//				if (!item.paramet.itemColor.ToString().Equals(charParamet.myColor.ToString())){
-//					setTarget(item.paramet.itemColor);
-//					arrived = false;
-//					setAttacking(true);
-//				}
-//			}
+
 			yield return new WaitForSeconds(0.0f);
 		}
-
+		yield return new WaitForSeconds(0.0f);
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
 			Debug.Log ("Person who got BACK stabbed droppps dead.");
 			setDead(true);
@@ -134,15 +129,23 @@ public abstract class Character : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(0.0f);
 	}
-	public void sicTarget(Transform sicTarget){
+	public IEnumerator sicTarget(Transform sicTarget, float timeDelay){
+		//note when you have guns, you will no longer be able to set walking to true in this location
+		//setWalking (true);
+
 		Debug.Log("INSIDE OF SIC TARGET");
+//		if(arrived){
+//			setWalking(false);
+//		}
+
 		if(!arrived && myQueue_Script.myItemObjects.Count > 0){
-			switchAnim(anim, 1);
+			//setWalking(true);
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 		}
 		else if(arrived && getAttacking()){
-
+			setWalking(false);
 		}
+		yield return new WaitForSeconds(0.0f);
 	}  //this can be walk to or aim
 	public void hitTarget(){ }
 	public void returnToOrigPosition( ){ }
@@ -168,37 +171,67 @@ public abstract class Character : MonoBehaviour {
 		return iAmDead;
 	}
 
+//	public bool getStartedWalking(){
+//		return startedWalking;
+//	}
+//
+//	public void setStartedWalking(bool tf){
+//		if(tf){
+//			startedWalking = true;
+//			switchAnim(anim, 1);
+//		}
+//		else
+//			startedWalking = false;
+//			
+//	}
+
+	public bool getWalking(){
+		return walking;
+	}
+
+	public void setWalking(bool tf){
+		if(tf){
+			walking = true;
+			switchAnim(anim, 1);
+		}
+		else{
+			walking = false;
+			switchAnim(anim, 0);
+		}
+	}
+
 
 	public void switchAnim(Animator anim0, int anim_state){
 		anim0.SetInteger("MainInt", anim_state);
 	}
 	
-	public virtual void OnTriggerEnter2D (Collider2D  other)
+	public virtual IEnumerator OnTriggerEnter2D (Collider2D  other)
 		{
-			//if I am the attacker
+		Debug.Log ("TRIGGER ENTERED . SHOULD STOP WALK");
 			if (getAttacking ()) {
+				arrived = true;
+				setWalking(false);
+				switchAnim(anim, 0);
 				if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
 						arrived = true;
+						setWalking(false);
+						yield return new WaitForSeconds(1.0f);
 						StartCoroutine (stabTarget (other));
-						Debug.Log("iamDead = "+iAmDead);
-						if(!iAmDead){
-							StartCoroutine (walkBackToStartPosition (myStartPosition, 1.0f));
+						if(other.gameObject.GetComponent<Character>().getStabBack()){
+							yield return new WaitForSeconds(2.0f);
+							StartCoroutine (walkBackToStartPosition (myStartPosition, 0.0f));
 						}
 						
-						else if(iAmDead){
-							Debug.Log ("INSIDE OF IAMDEAD IN TRIGGERENTER");
-							switchAnim(anim, 0);
-							//switchAnim(anim, 3);
+						else{
+							
 						}
-						myCurrTarget = null;
-				//switchAnim (anim, );
 				}
 			}
 		}
 
 	IEnumerator stabTarget(Collider2D  other){
-
-		Debug.Log("TRYING TO STAB THIS F'ING TARGET");
+		//yield return new WaitForSeconds(2.0f);
+		//Debug.Log("TRYING TO STAB THIS F'ING TARGET");
 		switchAnim (anim, 2);
 		myCurrTarget = null;
 		setAttacking (false);
@@ -206,7 +239,7 @@ public abstract class Character : MonoBehaviour {
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
-		Debug.Log("TRYING TO STAB THIS F'ING TARGET 222");
+		//Debug.Log("TRYING TO STAB THIS F'ING TARGET 222");
 		yield return new WaitForSeconds(0.0f);
 	}
 
@@ -214,12 +247,12 @@ public abstract class Character : MonoBehaviour {
 		yield return new WaitForSeconds(delay);
 		this.transform.position = myStartPosition;
 		if(inStartPosition()){
-			switchAnim(anim, 0);
+			setWalking(false);
 		}
 	}
 
 	public bool inStartPosition(){
-		Debug.Log ("I "+this+" back in START POSITION");
+		//Debug.Log ("I "+this+" back in START POSITION");
 		float dist = Vector3.Distance(transform.position, myStartPosition);
 		if(dist <= 0.1){
 			return true;

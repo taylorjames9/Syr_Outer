@@ -22,6 +22,8 @@ public class Activate_MainChar : MonoBehaviour {
 		activeMainPlayerOBJ = GameObject.FindGameObjectWithTag ("ActiveMain");
 		activeMainPlayerScript = activeMainPlayerOBJ.GetComponent <MainChar>();
 		QueueScript1 qScript = activeMainPlayerOBJ.GetComponentInChildren<QueueScript1>();
+		//activeMainPlayerScript.setStartedWalking(true);
+		activeMainPlayerScript.setWalking(true);
 		if(qScript.myItemObjects.Count > 0){
 			activeMainPlayerScript.setMainTarget (activeMainPlayerScript.getTargetUnderConsideration());
 			activeMainPlayerScript.getTargetUnderConsideration().setAssailant(activeMainPlayerScript);
