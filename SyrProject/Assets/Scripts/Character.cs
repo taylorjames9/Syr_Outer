@@ -76,8 +76,8 @@ public abstract class Character : MonoBehaviour {
 		List<Character> chrsInLev = levelManScript.charsInLevel;
 		foreach(Character chr in chrsInLev){
 			if(chr.charParamet.myColor.ToString () == clr.ToString()){
-				myCurrTarget = chr;
-				myCurrTarget.GetComponent<Character>().setAssailant(this);
+				setTarget(chr);
+				getTarget().GetComponent<Character>().setAssailant(this);
 			}
 		}
 	}
@@ -173,11 +173,11 @@ public abstract class Character : MonoBehaviour {
 		anim0.SetInteger("MainInt", anim_state);
 	}
 	
-	public virtual void OnTriggerEnter2D (Collider2D  other)
+	public virtual IEnumerator OnTriggerEnter2D (Collider2D  other)
 		{
 			//if I am the attacker
 			if (getAttacking ()) {
-				if (other.name == myCurrTarget.name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
+				if (other.name == getTarget().name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
 						arrived = true;
 						StartCoroutine (stabTarget (other));
 						Debug.Log("iamDead = "+iAmDead);
@@ -190,17 +190,17 @@ public abstract class Character : MonoBehaviour {
 							switchAnim(anim, 0);
 							//switchAnim(anim, 3);
 						}
-						myCurrTarget = null;
-				//switchAnim (anim, );
+				setTarget(null);
 				}
 			}
+		yield return new WaitForSeconds(0.0f);
 		}
 
 	IEnumerator stabTarget(Collider2D  other){
 
 		Debug.Log("TRYING TO STAB THIS F'ING TARGET");
 		switchAnim (anim, 2);
-		myCurrTarget = null;
+		setTarget(null);
 		setAttacking (false);
 		StartCoroutine(other.gameObject.GetComponent<Character> ().reactToGetHit (this.gameObject.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
@@ -235,7 +235,7 @@ public abstract class Character : MonoBehaviour {
 	public bool allCharactersAreStationaryCheck(){
 		List<Character> allCharsInLevel = levelManScript.charsInLevel;
 		foreach(Character character in allCharsInLevel){
-			if(character.myCurrTarget != null){
+			if(character.getTarget() != null){
 				return false;
 			}
 		}
@@ -266,7 +266,7 @@ public abstract class Character : MonoBehaviour {
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
-		myCurrTarget = null;
+		setTarget(null);
 		yield return new WaitForSeconds(stabBackDelay);
 		switchAnim (anim, 0);
 	}
