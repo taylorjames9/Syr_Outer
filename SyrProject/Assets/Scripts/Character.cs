@@ -217,11 +217,11 @@ public abstract class Character : MonoBehaviour {
 						setWalking(false);
 						yield return new WaitForSeconds(1.0f);
 						StartCoroutine (stabTarget (other));
-						if(other.gameObject.GetComponent<Character>().getStabBack()){
-							yield return new WaitForSeconds(2.75f);
+						if(other.gameObject.GetComponent<Character>().getStabBack() && !iAmDead){
+							yield return new WaitForSeconds(3.5f);
 							StartCoroutine (walkBackToStartPosition (myStartPosition, 0.0f));
 						}
-						else if(!other.gameObject.GetComponent<Character>().getStabBack()){
+						else if(!other.gameObject.GetComponent<Character>().getStabBack() && myCurrTarget == null){
 							yield return new WaitForSeconds(1.5f);
 							StartCoroutine (walkBackToStartPosition (myStartPosition, 0.0f));
 						}
