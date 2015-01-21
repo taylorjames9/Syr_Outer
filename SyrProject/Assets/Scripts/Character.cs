@@ -108,10 +108,21 @@ public abstract class Character : MonoBehaviour {
 		}
 
 		else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
-			Debug.Log ("Person who got BACK stabbed droppps dead.");
+			//Debug.Log ("Person who got BACK stabbed droppps dead.");
 			setDead(true);
 			switchAnim(anim, 3);
 			LevelManager.bDeathInLevel = true;
+			if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
+				yield return new WaitForSeconds(0.5f);
+				Debug.Log ("WALK BACK BECAUSE THE GUY I STABBED HAS NO STAB BACK");
+				StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
+			}
+			else if(!origStabber.gameObject.GetComponent<Character>().getDead() && getStabBack()){
+				yield return new WaitForSeconds(2.0f);
+				if(origStabber.gameObject.GetComponent<Character>().getTarget() == null){
+					StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
+				}
+			}
 			yield return new WaitForSeconds(0.0f);
 		} 
 		else if(!stabBackON && item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
@@ -122,7 +133,20 @@ public abstract class Character : MonoBehaviour {
 				arrived = false;
 				setAttacking(true);
 			}
+			if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
+				Debug.Log ("WALK BACK BECAUSE THE GUY I STABBED HAS NO STAB BACK");
+				yield return new WaitForSeconds(0.5f);
+				StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
+			}
+			else if(!origStabber.gameObject.GetComponent<Character>().getDead() && getStabBack()){
+				yield return new WaitForSeconds(2.0f);
+				if(origStabber.gameObject.GetComponent<Character>().getTarget() == null){
+					StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
+				}
+			}
 		}
+
+
 		yield return new WaitForSeconds(0.0f);
 	}
 	public void sicTarget(Transform sicTarget){
@@ -197,7 +221,7 @@ public abstract class Character : MonoBehaviour {
 
 		Debug.Log("TRYING TO STAB THIS F'ING TARGET");
 		switchAnim (anim, 2);
-		yield return new WaitForSeconds(0.4f);
+		yield return new WaitForSeconds(0.6f);
 		setTarget(null);
 		setAttacking (false);
 		StartCoroutine(other.gameObject.GetComponent<Character> ().reactToGetHit (this.gameObject.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
@@ -223,12 +247,12 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	public bool inStartPosition(){
-		Debug.Log ("I "+this+" back in START POSITION");
+		//Debug.Log ("I "+this+" back in START POSITION");
 		float dist = Vector3.Distance(transform.position, myStartPosition);
 		if(dist <= 0.1){
 			return true;
 			if(allCharactersAreStationaryCheck()){
-				Debug.Log("SHOULD BE BACK TO LEVEL START STATE");
+				//Debug.Log("SHOULD BE BACK TO LEVEL START STATE");
 				levelManScript.setGameState(GAME_STATE.LEVEL_START);
 			}
 		}
@@ -275,6 +299,7 @@ public abstract class Character : MonoBehaviour {
 		yield return new WaitForSeconds(0.4f);
 		switchAnim (anim, 0);
 		if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
+			yield return new WaitForSeconds(0.5f);
 			Debug.Log ("WALK BACK BECAUSE THE GUY I STABBED HAS NO STAB BACK");
 			StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
 		}

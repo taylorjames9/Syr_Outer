@@ -44,6 +44,10 @@ public class MainChar : Character {
 			else if(myQueue_Script.myItemObjects.Count <= 0 && !inStartPosition()){
 				walkBackToStartPosition(myStartPosition, 1.0f);
 			}
+			else if(iAmDead){
+				Debug.Log ("I am DEAD");
+				myQueueOBJ.SetActive(false);
+			}
 			break;
 		case GAME_STATE.LEVEL_END:
 			

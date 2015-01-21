@@ -34,6 +34,7 @@ public class NonMainChar : Character {
 			}
 			if(iAmDead){
 				Debug.Log ("I am DEAD");
+				myQueueOBJ.SetActive(false);
 			}
 
 			break;
