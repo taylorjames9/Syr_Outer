@@ -41,6 +41,9 @@ public class MainChar : Character {
 				switchAnim(anim, 1);
 				sicTarget(getTarget().transform);
 			}
+			else if(myQueue_Script.myItemObjects.Count <= 0 && !inStartPosition()){
+				walkBackToStartPosition(myStartPosition, 1.0f);
+			}
 			break;
 		case GAME_STATE.LEVEL_END:
 			
