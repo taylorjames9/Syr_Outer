@@ -243,6 +243,7 @@ public abstract class Character : MonoBehaviour {
 				return false;
 			}
 		}
+		levelManScript.enableAllInventoryColliders(true);
 		return true;
 	}
 
@@ -274,6 +275,7 @@ public abstract class Character : MonoBehaviour {
 		yield return new WaitForSeconds(0.4f);
 		switchAnim (anim, 0);
 		if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
+			Debug.Log ("WALK BACK BECAUSE THE GUY I STABBED HAS NO STAB BACK");
 			StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
 		}
 		else if(!origStabber.gameObject.GetComponent<Character>().getDead() && getStabBack()){

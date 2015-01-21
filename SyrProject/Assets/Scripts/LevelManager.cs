@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 public enum GAME_STATE {NONE, LEVEL_START, RED_ARROW_OUT, MAINCHAR_ACTIVE, CHAIN_REACTION, LEVEL_END};
 
@@ -56,6 +57,14 @@ public class LevelManager : MonoBehaviour {
 	public void sortAllQueuesInLevel(){
 		foreach(QueueScript1 qScript in myQObjs){
 			qScript.displayNewQueueVisualFromOwnerQueueList();
+		}
+	}
+
+	public void enableAllInventoryColliders(bool tf){
+		List<GameObject> allInventoryObjs = GameObject.FindGameObjectsWithTag("InventoryItem").ToList();
+		foreach(GameObject gamObj in allInventoryObjs){
+			Collider2D col = gamObj.GetComponent<Collider2D>();
+			col.enabled = tf;
 		}
 	}
 

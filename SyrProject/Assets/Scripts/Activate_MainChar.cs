@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Activate_MainChar : MonoBehaviour {
 
@@ -33,7 +34,7 @@ public class Activate_MainChar : MonoBehaviour {
 				chr.myQueueOBJ.SetActive(false);
 			}*/
 			levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
+			levelManScript.enableAllInventoryColliders(false);
 		}
 	}
-
 }
