@@ -92,7 +92,7 @@ public abstract class Character : MonoBehaviour {
 	}
 
 	IEnumerator reactToGetHit (Collider2D origStabber, Item_Set item){ 
-
+		yield return new WaitForSeconds(1.5f);
 		Debug.Log ("INside of react to get hit");
 		if(getStabBack()){
 			Debug.Log ("WE ARE IN A TRUE STAB BACK");
@@ -103,7 +103,7 @@ public abstract class Character : MonoBehaviour {
 				switchAnim(anim, 3);
 				LevelManager.bDeathInLevel = true;
 			} 
-			StartCoroutine(stabBack(origStabber, 1.5f));
+			StartCoroutine(stabBack(origStabber, 0.0f));
 //			else if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.SETTARGET){
 //				//if the thing that I go hit with is not my color. 
 //				Debug.Log ("I JUST GOT STUCK WITH A SYRINGE TO SET TARGET");
@@ -113,7 +113,7 @@ public abstract class Character : MonoBehaviour {
 //					setAttacking(true);
 //				}
 //			}
-			yield return new WaitForSeconds(0.0f);
+			yield break;
 		}
 
 		if(item.paramet.itemFunction == ItemParams.ITEM_FUNCTION.DEATH){
@@ -141,7 +141,7 @@ public abstract class Character : MonoBehaviour {
 			transform.position = Vector2.MoveTowards(this.transform.position, sicTarget.position, 0.02f);
 		}
 		else if(arrived && getAttacking()){
-
+			switchAnim(anim, 0);
 		}
 	}  //this can be walk to or aim
 	public void hitTarget(){ }
@@ -179,18 +179,24 @@ public abstract class Character : MonoBehaviour {
 			if (getAttacking ()) {
 				if (other.name == getTarget().name && levelManScript.myGameState == GAME_STATE.CHAIN_REACTION) {
 						arrived = true;
+						switchAnim(anim, 0);
+						yield return new WaitForSeconds(1.5f);
 						StartCoroutine (stabTarget (other));
 						Debug.Log("iamDead = "+iAmDead);
-						if(!iAmDead){
-							StartCoroutine (walkBackToStartPosition (myStartPosition, 1.0f));
+						yield return new WaitForSeconds(1.5f);
+						if(!iAmDead && !other.gameObject.GetComponent<Character>().getStabBack()){
+							StartCoroutine (walkBackToStartPosition (myStartPosition, 0.0f));
 						}
-						
-						else if(iAmDead){
+						else if(!iAmDead && other.gameObject.GetComponent<Character>().getStabBack()){
+							yield return new WaitForSeconds(1.0f);
+							StartCoroutine (walkBackToStartPosition (myStartPosition, 0.0f));
+						}
+				
+				else if(iAmDead){
 							Debug.Log ("INSIDE OF IAMDEAD IN TRIGGERENTER");
-							switchAnim(anim, 0);
-							//switchAnim(anim, 3);
+							switchAnim(anim, 3);
 						}
-				setTarget(null);
+				//setTarget(null);
 				}
 			}
 		yield return new WaitForSeconds(0.0f);
@@ -207,7 +213,8 @@ public abstract class Character : MonoBehaviour {
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
 		Debug.Log("TRYING TO STAB THIS F'ING TARGET 222");
-		yield return new WaitForSeconds(0.0f);
+		yield return new WaitForSeconds(0.7f);
+		switchAnim (anim, 0);
 	}
 
 	IEnumerator walkBackToStartPosition(Vector2 startPosition, float delay){
