@@ -295,7 +295,7 @@ public abstract class Character : MonoBehaviour {
 		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
 		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
 		setLiability (false);
-		setTarget(null);
+		setTarget(null); 
 		yield return new WaitForSeconds(0.4f);
 		switchAnim (anim, 0);
 		if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
