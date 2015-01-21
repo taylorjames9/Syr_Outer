@@ -113,7 +113,7 @@ public abstract class Character : MonoBehaviour {
 			switchAnim(anim, 3);
 			LevelManager.bDeathInLevel = true;
 			if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
-				yield return new WaitForSeconds(0.5f);
+				//yield return new WaitForSeconds(0.5f);
 				Debug.Log ("WALK BACK BECAUSE THE GUY I STABBED HAS NO STAB BACK");
 				StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
 			}
@@ -135,7 +135,7 @@ public abstract class Character : MonoBehaviour {
 			}
 			if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
 				Debug.Log ("WALK BACK BECAUSE THE GUY I STABBED HAS NO STAB BACK");
-				yield return new WaitForSeconds(0.5f);
+				//yield return new WaitForSeconds(0.5f);
 				StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
 			}
 			else if(!origStabber.gameObject.GetComponent<Character>().getDead() && getStabBack()){
@@ -254,6 +254,7 @@ public abstract class Character : MonoBehaviour {
 			if(allCharactersAreStationaryCheck()){
 				//Debug.Log("SHOULD BE BACK TO LEVEL START STATE");
 				levelManScript.setGameState(GAME_STATE.LEVEL_START);
+				levelManScript.enableAllInventoryColliders(true);
 			}
 		}
 		else
@@ -267,7 +268,6 @@ public abstract class Character : MonoBehaviour {
 				return false;
 			}
 		}
-		levelManScript.enableAllInventoryColliders(true);
 		return true;
 	}
 
@@ -299,7 +299,7 @@ public abstract class Character : MonoBehaviour {
 		yield return new WaitForSeconds(0.4f);
 		switchAnim (anim, 0);
 		if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
-			yield return new WaitForSeconds(0.5f);
+			//yield return new WaitForSeconds(0.5f);
 			Debug.Log ("WALK BACK BECAUSE THE GUY I STABBED HAS NO STAB BACK");
 			StartCoroutine (origStabber.gameObject.GetComponent<Character>().walkBackToStartPosition (myStartPosition, 0.0f));
 		}

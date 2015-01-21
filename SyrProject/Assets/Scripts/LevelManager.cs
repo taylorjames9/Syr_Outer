@@ -61,10 +61,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void enableAllInventoryColliders(bool tf){
+		Debug.Log("TOGGLING INVENTORY COLLIDERS");
 		List<GameObject> allInventoryObjs = GameObject.FindGameObjectsWithTag("InventoryItem").ToList();
 		foreach(GameObject gamObj in allInventoryObjs){
-			Collider2D col = gamObj.GetComponent<Collider2D>();
-			col.enabled = tf;
+			Collider2D col = gamObj.transform.GetComponent<Collider2D>();
+			if(col != null){
+				col.enabled = tf;
+			}
 		}
 	}
 
