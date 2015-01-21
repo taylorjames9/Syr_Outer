@@ -250,12 +250,12 @@ public abstract class Character : MonoBehaviour {
 		//Debug.Log ("I "+this+" back in START POSITION");
 		float dist = Vector3.Distance(transform.position, myStartPosition);
 		if(dist <= 0.1){
-			return true;
 			if(allCharactersAreStationaryCheck()){
 				//Debug.Log("SHOULD BE BACK TO LEVEL START STATE");
 				levelManScript.setGameState(GAME_STATE.LEVEL_START);
 				levelManScript.enableAllInventoryColliders(true);
 			}
+			return true;
 		}
 		else
 			return false; 

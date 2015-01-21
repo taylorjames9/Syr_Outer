@@ -35,6 +35,9 @@ public class Activate_MainChar : MonoBehaviour {
 			}*/
 			levelManScript.setGameState(GAME_STATE.CHAIN_REACTION);
 			levelManScript.enableAllInventoryColliders(false);
+
+			//
+
 		}
 	}
 }

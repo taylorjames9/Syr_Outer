@@ -28,7 +28,9 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.LEVEL_START:
-			
+
+			Debug.Log("IN LEVEL STARTOOOOOO");
+
 			break;
 		case GAME_STATE.RED_ARROW_OUT:
 
@@ -48,6 +50,13 @@ public class MainChar : Character {
 				Debug.Log ("I am DEAD");
 				myQueueOBJ.SetActive(false);
 			}
+///////////
+			if(inStartPosition() && allCharactersAreStationaryCheck()){
+				tapOnMeCounter = 0;
+				targetUnderConsideration = levelManScript.charsInLevel[randomNumForThisLevel];
+				levelManScript.setGameState(GAME_STATE.LEVEL_START);
+			}
+
 			break;
 		case GAME_STATE.LEVEL_END:
 			

@@ -48,7 +48,9 @@ public class QueueScript1 : MonoBehaviour {
 
 	public void removeUsedObjectFromOwnerQueue(){
 		myItemObjects[0].transform.renderer.enabled = false;
+		myItemObjects[0].tag = "DisappearedInventoryItem";
 		myItemObjects.RemoveAt(0);
+
 	}
 
 	public void animatePotentialNewIncomingObject(){
