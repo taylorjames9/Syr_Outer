@@ -25,7 +25,7 @@ public class MainChar : Character {
 
 		switch(levelManScript.getGameState()){
 		case GAME_STATE.NONE:
-
+				Debug.Log("IN GameState NONE");
 			break;
 		case GAME_STATE.LEVEL_START:
 
@@ -36,9 +36,10 @@ public class MainChar : Character {
 
 			break;
 		case GAME_STATE.MAINCHAR_ACTIVE:
-			sicTarget (getTarget ().transform);
+			//sicTarget (getTarget ().transform);
 			break;
 		case GAME_STATE.CHAIN_REACTION:
+			Debug.Log ("My curr target is: "+getTarget());
 			if(getTarget() != null && myQueue_Script.myItemObjects.Count > 0){
 				switchAnim(anim, 1);
 				sicTarget(getTarget().transform);
@@ -53,8 +54,11 @@ public class MainChar : Character {
 ///////////
 			if(inStartPosition() && allCharactersAreStationaryCheck()){
 				tapOnMeCounter = 0;
-				targetUnderConsideration = levelManScript.charsInLevel[randomNumForThisLevel];
-				levelManScript.setGameState(GAME_STATE.LEVEL_START);
+				setTargetUnderConsideration(levelManScript.charsInLevel[randomNumForThisLevel]);
+				setTarget(getTargetUnderConsideration());
+				levelManScript.setGameState(GAME_STATE.RED_ARROW_OUT);
+				arrived = false;
+				//levelManScript.setGameState(GAME_STATE.LEVEL_START);
 			}
 
 			break;

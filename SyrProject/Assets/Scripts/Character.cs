@@ -252,8 +252,7 @@ public abstract class Character : MonoBehaviour {
 		if(dist <= 0.1){
 			if(allCharactersAreStationaryCheck()){
 				//Debug.Log("SHOULD BE BACK TO LEVEL START STATE");
-				levelManScript.setGameState(GAME_STATE.LEVEL_START);
-				levelManScript.enableAllInventoryColliders(true);
+//				levelManScript.enableAllInventoryColliders(true);
 			}
 			return true;
 		}
