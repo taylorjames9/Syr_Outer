@@ -290,11 +290,13 @@ public abstract class Character : MonoBehaviour {
 		Debug.Log ("We are inside of stab back function.");
 		switchAnim (anim, 2);
 		setAttacking (false);
-		StartCoroutine(origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
-		myQueue_Script.removeUsedObjectFromOwnerQueue (); 
-		myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
-		setLiability (false);
-		setTarget(null); 
+		//if(myCurrentItems.Count > 0){
+			StartCoroutine(origStabber.gameObject.GetComponent<Character> ().reactToGetHit ((Collider2D)this.GetComponent<Collider2D>(), myQueue_Script.myItemObjects [0]));
+			myQueue_Script.removeUsedObjectFromOwnerQueue (); 
+			myQueue_Script.displayNewQueueVisualFromOwnerQueueList ();
+			setLiability (false);
+			setTarget(null); 
+		//}
 		yield return new WaitForSeconds(0.4f);
 		switchAnim (anim, 0);
 		if(!origStabber.gameObject.GetComponent<Character>().getDead() && !getStabBack()){
